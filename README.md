@@ -15,7 +15,7 @@ This project asks: *given a prior belief over which Trine state was sent, what m
 ## Repository Structure
 
 ```
-2026QSD_organized/
+POMDP_QSD/
 ├── phase1_one_step/              # Phase I  — single-step optimal angle map
 ├── phase2_posterior_routing/     # Phase II — posterior belief routing analysis
 ├── phase3_sequential/            # Phase III — two-step sequential Bellman solver
