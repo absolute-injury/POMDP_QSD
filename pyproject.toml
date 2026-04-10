@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trine-one-step"
+version = "0.1.0"
+description = "Trine one-step geometry solver"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24,<2.0",
+  "matplotlib>=3.7",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

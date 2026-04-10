@@ -1,0 +1,906 @@
+{
+  "config": {
+    "n_alpha": 240,
+    "n_beliefs": 3321,
+    "near_tie_gap_threshold": 1e-06,
+    "phase1_tie_tol": 1e-10,
+    "posterior_tol": 1e-12,
+    "probability_tol": 1e-12,
+    "snap_metric": "linf"
+  },
+  "global_checks": {
+    "center_point_A_symmetry": {
+      "branch_length_spread": 8.606637656743965e-05,
+      "dominant_hypotheses": [
+        1,
+        2,
+        3
+      ],
+      "probability_spread": 0.006250000000000033
+    },
+    "max_abs_j1_residual": 0.0,
+    "max_abs_posterior_residual": 2.220446049250313e-16,
+    "max_abs_probability_residual": 2.220446049250313e-16,
+    "near_certainty_point_C": {
+      "gain_percentile": 0.022583559168925023,
+      "gain_q25_reference": 0.1063726154430289,
+      "gain_value": 0.025336126613671017,
+      "is_low_gain_region": true
+    },
+    "pass_all_j1_consistency": true,
+    "pass_all_posterior_norm": true,
+    "pass_all_probability_norm": true,
+    "switching_point_E": {
+      "argmax_gap": 1.2692311942896772e-05,
+      "candidate_gaps": {
+        "backup_1": 1.2692311943007795e-05,
+        "backup_2": 1.2692311942896772e-05,
+        "target": 1.2692311942896772e-05
+      },
+      "near_tie_satisfied": false,
+      "near_tie_threshold": 1e-06,
+      "source": "backup_2"
+    },
+    "warnings": [
+      "Point E gap (1.269e-05) is above near-tie threshold (1.000e-06)."
+    ]
+  },
+  "point_order": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "points": [
+    {
+      "alpha_idx": 0,
+      "alpha_star": 0.0,
+      "argmax_gap": 1.2692311942896772e-05,
+      "checks": {
+        "gain_recomputed": 0.3291666666666666,
+        "gain_residual": 0.0,
+        "j1_recomputed": 0.6666666666666666,
+        "j1_residual": 0.0,
+        "pass_j1_consistency": true,
+        "pass_posterior_norm": true,
+        "pass_probability_norm": true,
+        "posterior_sum_residuals": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "posterior_sums": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "probability_sum": 1.0,
+        "probability_sum_residual": 0.0
+      },
+      "entropy_prior": 1.0984553752639779,
+      "gain": 0.3291666666666666,
+      "grid_index": 1808,
+      "interpretation_tag": "center-balanced-branching",
+      "j1_star": 0.6666666666666666,
+      "label": "A",
+      "max_coordinate_prior": 0.3375,
+      "outcomes": [
+        {
+          "branch_length": 0.28858378170411847,
+          "displacement_xy": [
+            -0.24992088607594942,
+            -0.14429189085205932
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.8791023477425584,
+          "max_coordinate_posterior": 0.6582278481012659,
+          "outcome": 1,
+          "phase3_bridge": {
+            "nearest_grid_index": 2900,
+            "projected_belief": [
+              0.65,
+              0.175,
+              0.175
+            ],
+            "projected_xy": [
+              0.26249999999999996,
+              0.15155444566227674
+            ],
+            "projection_distance": 0.008227848101265867,
+            "projection_metric": "linf",
+            "stopping_value": 0.6582278481012659
+          },
+          "posterior_belief": [
+            0.6582278481012659,
+            0.17088607594936717,
+            0.17088607594936694
+          ],
+          "posterior_xy": [
+            0.25632911392405067,
+            0.14799168292518874
+          ],
+          "probability": 0.32916666666666666
+        },
+        {
+          "branch_length": 0.28866984808068574,
+          "displacement_xy": [
+            0.24840838509316754,
+            -0.14704949985066512
+          ],
+          "dominant_hypothesis": 2,
+          "entropy_posterior": 0.8617256202634,
+          "max_coordinate_posterior": 0.670807453416149,
+          "outcome": 2,
+          "phase3_bridge": {
+            "nearest_grid_index": 1029,
+            "projected_belief": [
+              0.1625,
+              0.675,
+              0.1625
+            ],
+            "projected_xy": [
+              0.7562500000000001,
+              0.14072912811497126
+            ],
+            "projection_distance": 0.005201863354037328,
+            "projection_metric": "linf",
+            "stopping_value": 0.670807453416149
+          },
+          "posterior_belief": [
+            0.16149068322981372,
+            0.670807453416149,
+            0.16770186335403733
+          ],
+          "posterior_xy": [
+            0.7546583850931676,
+            0.14523407392658294
+          ],
+          "probability": 0.3354166666666667
+        },
+        {
+          "branch_length": 0.2886698480806859,
+          "displacement_xy": [
+            -0.003144409937888115,
+            0.2886527219290835
+          ],
+          "dominant_hypothesis": 3,
+          "entropy_posterior": 0.8617256202633998,
+          "max_coordinate_posterior": 0.6708074534161491,
+          "outcome": 3,
+          "phase3_bridge": {
+            "nearest_grid_index": 988,
+            "projected_belief": [
+              0.1625,
+              0.1625,
+              0.675
+            ],
+            "projected_xy": [
+              0.5,
+              0.5845671475544961
+            ],
+            "projection_distance": 0.005201863354037356,
+            "projection_metric": "linf",
+            "stopping_value": 0.6708074534161491
+          },
+          "posterior_belief": [
+            0.16149068322981353,
+            0.16770186335403736,
+            0.6708074534161491
+          ],
+          "posterior_xy": [
+            0.503105590062112,
+            0.5809362957063315
+          ],
+          "probability": 0.33541666666666664
+        }
+      ],
+      "role": "center/symmetry",
+      "snap_distance": 0.008333333333333304,
+      "snap_metric": "linf",
+      "snapped_belief": [
+        0.325,
+        0.3375,
+        0.3375
+      ],
+      "source": "target",
+      "start_xy": [
+        0.5062500000000001,
+        0.29228357377724806
+      ],
+      "stopping_value": 0.3375,
+      "switching_validation": {
+        "candidate_gaps": null,
+        "near_tie_satisfied": null,
+        "near_tie_threshold": null
+      },
+      "target_belief": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "tie_flag": false
+    },
+    {
+      "alpha_idx": 179,
+      "alpha_star": 1.5620696805349248,
+      "argmax_gap": 7.600612634495185e-06,
+      "checks": {
+        "gain_recomputed": 0.2736907509934751,
+        "gain_residual": 0.0,
+        "j1_recomputed": 0.7611907509934751,
+        "j1_residual": 0.0,
+        "pass_j1_consistency": true,
+        "pass_posterior_norm": true,
+        "pass_probability_norm": true,
+        "posterior_sum_residuals": [
+          0.0,
+          2.220446049250313e-16,
+          0.0
+        ],
+        "posterior_sums": [
+          1.0,
+          1.0000000000000002,
+          1.0
+        ],
+        "probability_sum": 0.9999999999999998,
+        "probability_sum_residual": -2.220446049250313e-16
+      },
+      "entropy_prior": 0.8269889454905917,
+      "gain": 0.2736907509934751,
+      "grid_index": 2414,
+      "interpretation_tag": "edge-quasi-binary-routing",
+      "j1_star": 0.7611907509934751,
+      "label": "B",
+      "max_coordinate_prior": 0.4875,
+      "outcomes": [
+        {
+          "branch_length": 0.1505865307446147,
+          "displacement_xy": [
+            0.14767864402931385,
+            -0.029450319851607575
+          ],
+          "dominant_hypothesis": 2,
+          "entropy_posterior": 0.6656351750358,
+          "max_coordinate_posterior": 0.6521817941233601,
+          "outcome": 1,
+          "phase3_bridge": {
+            "nearest_grid_index": 1942,
+            "projected_belief": [
+              0.35,
+              0.65,
+              0.0
+            ],
+            "projected_xy": [
+              0.65,
+              0.0
+            ],
+            "projection_distance": 0.005675493935267617,
+            "projection_metric": "linf",
+            "stopping_value": 0.6521817941233601
+          },
+          "posterior_belief": [
+            0.34432450606473236,
+            0.6521817941233601,
+            0.003493699811907569
+          ],
+          "posterior_xy": [
+            0.6539286440293138,
+            0.0030256327903088694
+          ],
+          "probability": 0.4638503271597417
+        },
+        {
+          "branch_length": 0.3450036781219587,
+          "displacement_xy": [
+            0.3389122235891757,
+            0.06454488840737638
+          ],
+          "dominant_hypothesis": 2,
+          "entropy_posterior": 0.6608224670050707,
+          "max_coordinate_posterior": 0.7891472148923626,
+          "outcome": 2,
+          "phase3_bridge": {
+            "nearest_grid_index": 683,
+            "projected_belief": [
+              0.1,
+              0.7875,
+              0.1125
+            ],
+            "projected_xy": [
+              0.84375,
+              0.09742785792574934
+            ],
+            "projection_distance": 0.0016472148923626362,
+            "projection_metric": "linf",
+            "stopping_value": 0.7891472148923626
+          },
+          "posterior_belief": [
+            0.0988227677140113,
+            0.7891472148923626,
+            0.11203001739362621
+          ],
+          "posterior_xy": [
+            0.8451622235891757,
+            0.09702084104929282
+          ],
+          "probability": 0.2077154413335207
+        },
+        {
+          "branch_length": 0.42291060911567907,
+          "displacement_xy": [
+            -0.4229099043861552,
+            0.0007720587333509762
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.3984228374571738,
+          "max_coordinate_posterior": 0.897464156068625,
+          "outcome": 3,
+          "phase3_bridge": {
+            "nearest_grid_index": 3281,
+            "projected_belief": [
+              0.9,
+              0.0625,
+              0.0375
+            ],
+            "projected_xy": [
+              0.08125,
+              0.032475952641916446
+            ],
+            "projection_distance": 0.0025358439313750702,
+            "projection_metric": "linf",
+            "stopping_value": 0.897464156068625
+          },
+          "posterior_belief": [
+            0.897464156068625,
+            0.06414434729631438,
+            0.03839149663506077
+          ],
+          "posterior_xy": [
+            0.08334009561384477,
+            0.03324801137526742
+          ],
+          "probability": 0.32843423150673734
+        }
+      ],
+      "role": "edge-adjacent quasi-binary",
+      "snap_distance": 0.007500000000000007,
+      "snap_metric": "linf",
+      "snapped_belief": [
+        0.475,
+        0.4875,
+        0.0375
+      ],
+      "source": "target",
+      "start_xy": [
+        0.50625,
+        0.032475952641916446
+      ],
+      "stopping_value": 0.4875,
+      "switching_validation": {
+        "candidate_gaps": null,
+        "near_tie_satisfied": null,
+        "near_tie_threshold": null
+      },
+      "target_belief": [
+        0.48,
+        0.48,
+        0.04
+      ],
+      "tie_flag": false
+    },
+    {
+      "alpha_idx": 125,
+      "alpha_star": 1.090830782496456,
+      "argmax_gap": 2.220446049250313e-16,
+      "checks": {
+        "gain_recomputed": 0.025336126613671017,
+        "gain_residual": 0.0,
+        "j1_recomputed": 0.925336126613671,
+        "j1_residual": 0.0,
+        "pass_j1_consistency": true,
+        "pass_posterior_norm": true,
+        "pass_probability_norm": true,
+        "posterior_sum_residuals": [
+          2.220446049250313e-16,
+          0.0,
+          0.0
+        ],
+        "posterior_sums": [
+          1.0000000000000002,
+          1.0,
+          1.0
+        ],
+        "probability_sum": 1.0,
+        "probability_sum_residual": 0.0
+      },
+      "entropy_prior": 0.39439769144744274,
+      "gain": 0.025336126613671017,
+      "grid_index": 3280,
+      "interpretation_tag": "near-certainty-confirmatory",
+      "j1_star": 0.925336126613671,
+      "label": "C",
+      "max_coordinate_prior": 0.9,
+      "outcomes": [
+        {
+          "branch_length": 0.04757950027248701,
+          "displacement_xy": [
+            -0.019783102207577993,
+            -0.04327167333515211
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.21393373907663749,
+          "max_coordinate_posterior": 0.9447660144559137,
+          "outcome": 1,
+          "phase3_bridge": {
+            "nearest_grid_index": 3310,
+            "projected_belief": [
+              0.95,
+              0.05,
+              0.0
+            ],
+            "projected_xy": [
+              0.05,
+              0.0
+            ],
+            "projection_distance": 0.005233985544086273,
+            "projection_metric": "linf",
+            "stopping_value": 0.9447660144559137
+          },
+          "posterior_belief": [
+            0.9447660144559137,
+            0.05519981004075764,
+            3.417550332875358e-05
+          ],
+          "posterior_xy": [
+            0.05521689779242202,
+            2.9596854069820243e-05
+          ],
+          "probability": 0.46416210708325956
+        },
+        {
+          "branch_length": 0.7746050648821151,
+          "displacement_xy": [
+            0.6644778312401578,
+            0.3980982521079465
+          ],
+          "dominant_hypothesis": 3,
+          "entropy_posterior": 0.723928728714136,
+          "max_coordinate_posterior": 0.5096842660368849,
+          "outcome": 2,
+          "phase3_bridge": {
+            "nearest_grid_index": 39,
+            "projected_belief": [
+              0.0,
+              0.4875,
+              0.5125
+            ],
+            "projected_xy": [
+              0.7437499999999999,
+              0.4438380194395247
+            ],
+            "projection_distance": 0.005680035741399878,
+            "projection_metric": "linf",
+            "stopping_value": 0.5096842660368849
+          },
+          "posterior_belief": [
+            0.005680035741399878,
+            0.48463569822171526,
+            0.5096842660368849
+          ],
+          "posterior_xy": [
+            0.7394778312401578,
+            0.44139952229716845
+          ],
+          "probability": 0.05026967055180696
+        },
+        {
+          "branch_length": 0.049880992127668944,
+          "displacement_xy": [
+            -0.04988076678935935,
+            0.00014993380578214033
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.19939312138446585,
+          "max_coordinate_posterior": 0.9497942024662304,
+          "outcome": 3,
+          "phase3_bridge": {
+            "nearest_grid_index": 3306,
+            "projected_belief": [
+              0.95,
+              0.0,
+              0.05
+            ],
+            "projected_xy": [
+              0.025,
+              0.04330127018922193
+            ],
+            "projection_distance": 0.00020579753376959165,
+            "projection_metric": "linf",
+            "stopping_value": 0.9497942024662304
+          },
+          "posterior_belief": [
+            0.9497942024662304,
+            3.266888751171487e-05,
+            0.05017312864625789
+          ],
+          "posterior_xy": [
+            0.025119233210640662,
+            0.04345120399500407
+          ],
+          "probability": 0.48556822236493347
+        }
+      ],
+      "role": "near-certainty vertex-adjacent",
+      "snap_distance": 0.0,
+      "snap_metric": "linf",
+      "snapped_belief": [
+        0.9,
+        0.05,
+        0.05
+      ],
+      "source": "target",
+      "start_xy": [
+        0.07500000000000001,
+        0.04330127018922193
+      ],
+      "stopping_value": 0.9,
+      "switching_validation": {
+        "candidate_gaps": null,
+        "near_tie_satisfied": null,
+        "near_tie_threshold": null
+      },
+      "target_belief": [
+        0.9,
+        0.05,
+        0.05
+      ],
+      "tie_flag": true
+    },
+    {
+      "alpha_idx": 79,
+      "alpha_star": 0.6894050545377601,
+      "argmax_gap": 4.268244997107651e-06,
+      "checks": {
+        "gain_recomputed": 0.16555235970097804,
+        "gain_residual": 0.0,
+        "j1_recomputed": 0.7155523597009781,
+        "j1_residual": 0.0,
+        "pass_j1_consistency": true,
+        "pass_posterior_norm": true,
+        "pass_probability_norm": true,
+        "posterior_sum_residuals": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "posterior_sums": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "probability_sum": 1.0,
+        "probability_sum_residual": 0.0
+      },
+      "entropy_prior": 0.9745701894462542,
+      "gain": 0.16555235970097804,
+      "grid_index": 2642,
+      "interpretation_tag": "interior-routing-multi-destination",
+      "j1_star": 0.7155523597009781,
+      "label": "D",
+      "max_coordinate_prior": 0.55,
+      "outcomes": [
+        {
+          "branch_length": 0.16510700649758084,
+          "displacement_xy": [
+            -0.10931677319069333,
+            -0.12373425836754635
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.615410988563902,
+          "max_coordinate_posterior": 0.7307547805671749,
+          "outcome": 1,
+          "phase3_bridge": {
+            "nearest_grid_index": 3066,
+            "projected_belief": [
+              0.725,
+              0.2625,
+              0.0125
+            ],
+            "projected_xy": [
+              0.26875,
+              0.010825317547305483
+            ],
+            "projection_distance": 0.005754780567174933,
+            "projection_metric": "linf",
+            "stopping_value": 0.7307547805671749
+          },
+          "posterior_belief": [
+            0.7307547805671749,
+            0.26212123418578825,
+            0.007123985247036802
+          ],
+          "posterior_xy": [
+            0.26568322680930667,
+            0.00616955220011943
+          ],
+          "probability": 0.44446899141139656
+        },
+        {
+          "branch_length": 0.4660560926580717,
+          "displacement_xy": [
+            0.4600924030805372,
+            0.07431865264713519
+          ],
+          "dominant_hypothesis": 2,
+          "entropy_posterior": 0.7227990482883591,
+          "max_coordinate_posterior": 0.7171845089689034,
+          "outcome": 2,
+          "phase3_bridge": {
+            "nearest_grid_index": 375,
+            "projected_belief": [
+              0.05,
+              0.7125,
+              0.2375
+            ],
+            "projected_xy": [
+              0.83125,
+              0.20568103339880417
+            ],
+            "projection_distance": 0.004684508968903378,
+            "projection_metric": "linf",
+            "stopping_value": 0.7171845089689034
+          },
+          "posterior_belief": [
+            0.04699970280782898,
+            0.7171845089689034,
+            0.2358157882232676
+          ],
+          "posterior_xy": [
+            0.8350924030805372,
+            0.20422246321480098
+          ],
+          "probability": 0.24702493726959962
+        },
+        {
+          "branch_length": 0.24204453916556345,
+          "displacement_xy": [
+            -0.21090794358303805,
+            0.11875772932084894
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.6926117350697623,
+          "max_coordinate_posterior": 0.6923431365912973,
+          "outcome": 3,
+          "phase3_bridge": {
+            "nearest_grid_index": 2972,
+            "projected_belief": [
+              0.6875,
+              0.025,
+              0.2875
+            ],
+            "projected_xy": [
+              0.16874999999999998,
+              0.2489823035880261
+            ],
+            "projection_distance": 0.0048431365912973146,
+            "projection_metric": "linf",
+            "stopping_value": 0.6923431365912973
+          },
+          "posterior_belief": [
+            0.6923431365912973,
+            0.020527249425221116,
+            0.2871296139834817
+          ],
+          "posterior_xy": [
+            0.16409205641696195,
+            0.24866153988851472
+          ],
+          "probability": 0.3085060713190037
+        }
+      ],
+      "role": "generic interior asymmetric",
+      "snap_distance": 0.0,
+      "snap_metric": "linf",
+      "snapped_belief": [
+        0.55,
+        0.3,
+        0.15
+      ],
+      "source": "target",
+      "start_xy": [
+        0.375,
+        0.12990381056766578
+      ],
+      "stopping_value": 0.55,
+      "switching_validation": {
+        "candidate_gaps": null,
+        "near_tie_satisfied": null,
+        "near_tie_threshold": null
+      },
+      "target_belief": [
+        0.55,
+        0.3,
+        0.15
+      ],
+      "tie_flag": false
+    },
+    {
+      "alpha_idx": 0,
+      "alpha_star": 0.0,
+      "argmax_gap": 1.2692311942896772e-05,
+      "checks": {
+        "gain_recomputed": 0.24166666666666664,
+        "gain_residual": 0.0,
+        "j1_recomputed": 0.6666666666666666,
+        "j1_residual": 0.0,
+        "pass_j1_consistency": true,
+        "pass_posterior_norm": true,
+        "pass_probability_norm": true,
+        "posterior_sum_residuals": [
+          2.220446049250313e-16,
+          0.0,
+          0.0
+        ],
+        "posterior_sums": [
+          1.0000000000000002,
+          1.0,
+          1.0
+        ],
+        "probability_sum": 0.9999999999999998,
+        "probability_sum_residual": -2.220446049250313e-16
+      },
+      "entropy_prior": 1.080414237552752,
+      "gain": 0.24166666666666664,
+      "grid_index": 2216,
+      "interpretation_tag": "off-center-interior-caution-gap-1.27e-05",
+      "j1_star": 0.6666666666666666,
+      "label": "E",
+      "max_coordinate_prior": 0.425,
+      "outcomes": [
+        {
+          "branch_length": 0.27907906556020506,
+          "displacement_xy": [
+            -0.24168956043956036,
+            -0.13953953278010262
+          ],
+          "dominant_hypothesis": 1,
+          "entropy_posterior": 0.7405242783249053,
+          "max_coordinate_posterior": 0.7472527472527474,
+          "outcome": 1,
+          "phase3_bridge": {
+            "nearest_grid_index": 3100,
+            "projected_belief": [
+              0.75,
+              0.125,
+              0.125
+            ],
+            "projected_xy": [
+              0.1875,
+              0.10825317547305482
+            ],
+            "projection_distance": 0.0027472527472526265,
+            "projection_metric": "linf",
+            "stopping_value": 0.7472527472527474
+          },
+          "posterior_belief": [
+            0.7472527472527474,
+            0.12637362637362645,
+            0.12637362637362629
+          ],
+          "posterior_xy": [
+            0.1895604395604396,
+            0.10944277080792349
+          ],
+          "probability": 0.3791666666666666
+        },
+        {
+          "branch_length": 0.2875129495754857,
+          "displacement_xy": [
+            0.26338087248322145,
+            -0.11530052984948855
+          ],
+          "dominant_hypothesis": 2,
+          "entropy_posterior": 0.9232941321747772,
+          "max_coordinate_posterior": 0.6174496644295301,
+          "outcome": 2,
+          "phase3_bridge": {
+            "nearest_grid_index": 1355,
+            "projected_belief": [
+              0.225,
+              0.625,
+              0.15
+            ],
+            "projected_xy": [
+              0.7,
+              0.12990381056766578
+            ],
+            "projection_distance": 0.007550335570469913,
+            "projection_metric": "linf",
+            "stopping_value": 0.6174496644295301
+          },
+          "posterior_belief": [
+            0.22818791946308734,
+            0.6174496644295301,
+            0.1543624161073826
+          ],
+          "posterior_xy": [
+            0.6946308724832214,
+            0.13368177373853754
+          ],
+          "probability": 0.3104166666666667
+        },
+        {
+          "branch_length": 0.28751294957548573,
+          "displacement_xy": [
+            0.03183724832214785,
+            0.28574479136612396
+          ],
+          "dominant_hypothesis": 3,
+          "entropy_posterior": 0.923294132174777,
+          "max_coordinate_posterior": 0.6174496644295303,
+          "outcome": 3,
+          "phase3_bridge": {
+            "nearest_grid_index": 1317,
+            "projected_belief": [
+              0.225,
+              0.15,
+              0.625
+            ],
+            "projected_xy": [
+              0.4625,
+              0.5412658773652741
+            ],
+            "projection_distance": 0.007550335570469691,
+            "projection_metric": "linf",
+            "stopping_value": 0.6174496644295303
+          },
+          "posterior_belief": [
+            0.22818791946308709,
+            0.15436241610738266,
+            0.6174496644295303
+          ],
+          "posterior_xy": [
+            0.4630872483221478,
+            0.53472709495415
+          ],
+          "probability": 0.3104166666666666
+        }
+      ],
+      "role": "off-center interior",
+      "snap_distance": 0.0050000000000000044,
+      "snap_metric": "linf",
+      "snapped_belief": [
+        0.425,
+        0.2875,
+        0.2875
+      ],
+      "source": "backup_2",
+      "start_xy": [
+        0.43124999999999997,
+        0.2489823035880261
+      ],
+      "stopping_value": 0.425,
+      "switching_validation": {
+        "candidate_gaps": {
+          "backup_1": 1.2692311943007795e-05,
+          "backup_2": 1.2692311942896772e-05,
+          "target": 1.2692311942896772e-05
+        },
+        "near_tie_satisfied": false,
+        "near_tie_threshold": 1e-06
+      },
+      "target_belief": [
+        0.44,
+        0.28,
+        0.28
+      ],
+      "tie_flag": false
+    }
+  ],
+  "warnings": [
+    "Point E did not satisfy the near-tie threshold with target/backups; selected the smallest-gap candidate and flagged this in metadata.",
+    "Point E target replaced by backup_2 due to switching/tie validation.",
+    "Point E gap (1.269e-05) is above near-tie threshold (1.000e-06)."
+  ]
+}

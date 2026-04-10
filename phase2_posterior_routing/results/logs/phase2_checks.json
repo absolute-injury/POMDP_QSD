@@ -1,0 +1,37 @@
+{
+  "center_point_A_symmetry": {
+    "branch_length_spread": 8.606637656743965e-05,
+    "dominant_hypotheses": [
+      1,
+      2,
+      3
+    ],
+    "probability_spread": 0.006250000000000033
+  },
+  "max_abs_j1_residual": 0.0,
+  "max_abs_posterior_residual": 2.220446049250313e-16,
+  "max_abs_probability_residual": 2.220446049250313e-16,
+  "near_certainty_point_C": {
+    "gain_percentile": 0.022583559168925023,
+    "gain_q25_reference": 0.1063726154430289,
+    "gain_value": 0.025336126613671017,
+    "is_low_gain_region": true
+  },
+  "pass_all_j1_consistency": true,
+  "pass_all_posterior_norm": true,
+  "pass_all_probability_norm": true,
+  "switching_point_E": {
+    "argmax_gap": 1.2692311942896772e-05,
+    "candidate_gaps": {
+      "backup_1": 1.2692311943007795e-05,
+      "backup_2": 1.2692311942896772e-05,
+      "target": 1.2692311942896772e-05
+    },
+    "near_tie_satisfied": false,
+    "near_tie_threshold": 1e-06,
+    "source": "backup_2"
+  },
+  "warnings": [
+    "Point E gap (1.269e-05) is above near-tie threshold (1.000e-06)."
+  ]
+}

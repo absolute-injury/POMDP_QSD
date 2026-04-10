@@ -1,0 +1,14 @@
+{
+  "center_index": 1863,
+  "center_j1_range_over_alpha": 0.16041666666666676,
+  "center_tie_count": 1,
+  "checks": {
+    "center_profile_computed": true,
+    "cyclic_permutation_symmetry": true,
+    "gain_nonnegative_with_tolerance": true,
+    "vertex_gain_near_zero": true
+  },
+  "cyclic_symmetry_max_diff": 4.440892098500626e-16,
+  "gain_min": 0.0,
+  "vertex_gain_max_abs": 2.220446049250313e-16
+}

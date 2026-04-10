@@ -1,0 +1,12 @@
+Phase II posterior routing interpretation notes
+
+A (center/symmetry): probability spread=0.006; branches remain balanced and support a symmetry-consistent reading.
+B (quasi-binary edge): dominant posteriors=[2, 2, 1]; routing emphasizes a two-state contest with one low-mass tail.
+C (near-certainty): gain=0.0253 (percentile=0.023); panel is consistent with low incremental gain.
+D (generic interior): dominant posteriors split across hypotheses [1, 2, 1], indicating routing structure beyond confirmation.
+E (off-center interior): argmax gap=1.269e-05; interpret region boundaries cautiously and use recorded diagnostics.
+
+Warnings
+- Point E did not satisfy the near-tie threshold with target/backups; selected the smallest-gap candidate and flagged this in metadata.
+- Point E target replaced by backup_2 due to switching/tie validation.
+- Point E gap (1.269e-05) is above near-tie threshold (1.000e-06).
