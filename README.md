@@ -1,4 +1,4 @@
-# 2026 QSD Simulation — Trine Geometry
+# POMDP + QSD Simulation — Trine Geometry
 
 Numerical simulation study of **Quantum State Discrimination (QSD)** under the symmetric three-state (Trine) geometry. The project investigates the structure of optimal measurement strategies across three experimental phases, progressing from a single-step setting to a two-step sequential decision problem.
 
