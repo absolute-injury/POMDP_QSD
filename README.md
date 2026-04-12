@@ -7,7 +7,7 @@ This repository studies Trine-state quantum state discrimination (QSD) as a POMD
 - Phase I: one-step optimal measurement angle map
 - Phase II: posterior branch routing diagnostics
 - Phase III: two-step sequential Bellman policy/value maps
-- Phase IV-B/D: discretization robustness and theorem-facing numerical synthesis
+- Phase IV-B/D: discretization robustness and simple proof-of-concept experiments for various theorems in the paper
 
 ## Prerequisites
 
