@@ -68,4 +68,4 @@ Focused outputs:
 - `phase4B_fig_compare_policy`: Comparison of decision/alpha disagreement ratios. Low decision disagreement is interpreted as to be stable within the policy regime.
 - `phase4B_fig_compare_region`: Comparison of `D1 > 0`, `D0 > 0`, and continuation fractions. The absence of significant fluctuations suggests the preservation of continuation topology.
 - `phase4B_focused_map_D0_error`: Map the distribution of top-k suspicious boundary points on the simplex and identify regions with high baseline D0 exact errors.
-- `phase4B_focused_sorted_error`: Comparative analysis of local exact error curves across baseline, coarse, and refined grids. Consistently lower errors in the refined grid suggest that prior deviations were likely coarse-grid artifacts.
+- `phase4B_focused_sorted_error`: Comparative analysis of local exact error curves across baseline, coarse, and refined grids. Consistently lower errors in the refined grid suggest that prior deviations were likely due to the coarse-grid effect.
