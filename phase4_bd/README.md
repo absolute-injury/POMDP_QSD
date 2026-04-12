@@ -1,13 +1,11 @@
-# Phase IV-B / IV-D — Discretization Robustness + Theorem-Facing Synthesis
+# Phase IV-B / IV-D — Discretization Robustness + Theorem-Verifying Synthesis
 
 ## Goal
 
 Implement the narrowed Phase IV scope:
 
 - **IV-B**: robustness under belief/action discretization refinement
-- **IV-D**: theorem-facing numerical synthesis (proof tone explicitly avoided)
-
-Axis A (cost sensitivity) is treated as complete, and Axis C (projection-rule comparison) is excluded by default.
+- **IV-D**: theorem-verifying numerical synthesis
 
 ## Prerequisites
 
@@ -66,8 +64,8 @@ Focused outputs:
 
 ## Plot Interpretation Cheatsheet
 
-- `phase4B_fig_compare_values`: baseline 대비 `V1/V0/D1/D0` 절대 차이 크기 비교. 값이 작고 특정 config만 튀지 않으면 구조 안정성이 높다.
-- `phase4B_fig_compare_policy`: decision disagreement / alpha disagreement 비율 비교. decision disagreement가 낮으면 정책 영역은 안정적이라고 해석한다.
-- `phase4B_fig_compare_region`: `D1>0`, `D0>0`, continuation fraction 비교. 큰 폭 변화가 없으면 continuation topology 유지로 본다.
-- `phase4B_focused_map_D0_error`: 의심 경계점(top-k)이 simplex 어디에 모이는지, 그리고 baseline D0 exact 오차가 어디서 큰지 확인.
-- `phase4B_focused_sorted_error`: baseline/coarse/refined의 local exact 오차 곡선 비교. refined가 일관되게 낮으면 coarse artifact 가능성이 높다.
+- `phase4B_fig_compare_values`: Comparison of absolute deviations in V1/V0/D1/D0 relative to the baseline. Minimal deviations without configuration-specific spikes indicate high structural stability.
+- `phase4B_fig_compare_policy`: Comparison of decision/alpha disagreement ratios. Low decision disagreement is interpreted as to be stable within the policy regime.
+- `phase4B_fig_compare_region`: Comparison of `D1 > 0`, `D0 > 0`, and continuation fractions. The absence of significant fluctuations suggests the preservation of continuation topology.
+- `phase4B_focused_map_D0_error`: Map the distribution of top-k suspicious boundary points on the simplex and identify regions with high baseline D0 exact errors.
+- `phase4B_focused_sorted_error`: Comparative analysis of local exact error curves across baseline, coarse, and refined grids. Consistently lower errors in the refined grid suggest that prior deviations were likely coarse-grid artifacts.
