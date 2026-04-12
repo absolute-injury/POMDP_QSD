@@ -2,7 +2,7 @@
 
 ## Goal
 
-This repository studies Trine-state quantum state discrimination (QSD) as a POMDP-style decision problem.
+This repository studies Trine-states quantum state discrimination (QSD) as a POMDP-style decision problem.
 
 - Phase I: one-step optimal measurement angle map
 - Phase II: posterior branch routing diagnostics
