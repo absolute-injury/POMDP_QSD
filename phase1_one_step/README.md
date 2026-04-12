@@ -2,7 +2,7 @@
 
 ## Goal
 
-Solve the single-step Trine QSD problem on a belief simplex grid:
+Solve the single-step Trine states QSD problem on a belief simplex grid:
 
 - input belief: `b=(b1,b2,b3)`
 - action: choose one measurement angle `alpha in [0, 2pi/3)`
@@ -56,9 +56,9 @@ Useful options:
 
 ## Plot Interpretation Cheatsheet
 
-- `figure_A_j1_star`: belief별 한 번 측정 최적값 지도. 중앙부가 높으면 불확실 구간에서 측정 이득이 큼.
-- `figure_B_gain`: `J1*-S` 지도로, 측정할 가치가 있는 영역을 바로 보여줌.
-- `figure_C_alpha_star`: 최적 alpha 선택 패턴. 부드러운 영역 + near-tie 경계의 공존 여부를 본다.
+- `figure_A_j1_star`: A map of optimal single-measurement gains over the belief simplex; a high central peak indicates significant measurement utility in high-uncertainty regimes.
+- `figure_B_gain`: `J1*-S` map provides an immediate visualization of the regions where measurement is most informative.
+- `figure_C_alpha_star`: Optimal alpha selection pattern, examining the coexistence of smooth regions and near-tie boundaries.
 
 ## Downstream Note
 
