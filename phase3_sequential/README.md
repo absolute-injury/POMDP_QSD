@@ -8,7 +8,7 @@ Solve horizon-2 sequential control (`H=2`) on the Trine belief grid.
 - Stage 1 decision: stop vs measure -> `V1`, `D1=V1-S`
 - Stage 0 decision: stop vs measure -> `V0`, `D0=V0-V1`
 
-This phase quantifies when a second measurement is worth its cost.
+This phase will also quantify when a second measurement is worth its cost.
 
 ## Prerequisites
 
@@ -74,11 +74,11 @@ Animation outputs include:
 
 ## Plot Interpretation Cheatsheet
 
-- `phase3_fig_V1_*`: 1단계에서 측정 여부를 포함한 가치 구조.
-- `phase3_fig_V0_*`: 0단계에서 선행 측정의 총 기대가치.
-- `phase3_fig_D1_*`, `phase3_fig_D0_*`: `>0` 영역이 continuation 영역.
-- `phase3_fig_action_*`: 측정을 선택한 지점에서 최적 alpha 패턴.
-- `phase3_fig_delta_alpha_idx_*`: 0단계와 1단계 alpha 차이로 적응성 강도를 본다.
+- `phase3_fig_V1_*`: Value structure at Step 1, incorporating measurement decisions.
+- `phase3_fig_V0_*`: Total expected value of prior measurements at Step 0.
+- `phase3_fig_D1_*`, `phase3_fig_D0_*`: The `>0` region indicates the continuation region.
+- `phase3_fig_action_*`: Optimal alpha patterns at points where measurement is selected.
+- `phase3_fig_delta_alpha_idx_*`: Analyzing adaptive intensity via the difference in alpha indices between Step 0 and Step 1.
 
 ## Notes
 
