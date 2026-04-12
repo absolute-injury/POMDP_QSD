@@ -90,5 +90,5 @@ If you are preserving only paper-core results, keep at least:
 
 ## Notes
 
-- Phase IV-D is numerical robustness evidence, not a formal convergence proof.
+- Phase IV-B/D is mainly about numerical robustness evidence, not a formal convergence proof.
 - For detailed option descriptions and interpretation notes, use each phase README.
