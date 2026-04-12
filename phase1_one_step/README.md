@@ -2,46 +2,66 @@
 
 ## Goal
 
-Given a prior belief vector **b = (b₀, b₁, b₂)** over the three Trine states, find the single measurement rotation angle **α ∈ [0, 2π/3)** that maximises the expected probability of correct identification in one shot.
+Solve the single-step Trine QSD problem on a belief simplex grid:
 
-## Method
+- input belief: `b=(b1,b2,b3)`
+- action: choose one measurement angle `alpha in [0, 2pi/3)`
+- objective: maximize one-step success probability `J1*(b)`
 
-The belief simplex is discretised into a triangular lattice (`BeliefGrid`). For each grid point the one-step value function
+This phase also computes `G(b)=J1*(b)-S(b)` with `S(b)=max(b)` to quantify the benefit of measuring vs stopping.
 
-```
-J₁(b, α) = Σ_k  max_j  P(outcome k | state j, α) · bⱼ
-```
+## Prerequisites
 
-is evaluated over a fine grid of angles. The maximising angle **α\*** and the resulting value **J₁\*(b)** are stored for every belief point.
-
-The **gain** surface `gain = J₁* − max(b)` quantifies the benefit of measuring versus stopping immediately (guessing the most probable state).
-
-## Code
-
-| File | Role |
-|------|------|
-| `code/src/core.py` | Belief grid, likelihood table, one-step value function |
-| `code/src/solver.py` | Batched optimisation over α; sanity checks (symmetry, vertex gain) |
-| `code/src/plotting.py` | Heatmap/contour utilities for the simplex |
-| `code/scripts/run_one_step.py` | End-to-end driver: solve → save → plot → log |
-
-## Results
-
-```
-results/
-├── data/
-│   ├── one_step_maps.npz   # full arrays: beliefs, j1_star, gain, best_alpha, …
-│   └── one_step_maps.csv   # flat table for quick inspection
-├── figures/
-│   ├── figure_A_j1_star.png    # optimal value surface over the simplex
-│   ├── figure_B_gain.png       # gain surface (benefit of measuring)
-│   └── figure_C_alpha_star.png # optimal angle map
-└── logs/
-    └── sanity_checks.json  # symmetry and vertex-gain validation
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install numpy matplotlib
 ```
 
-## Key findings
+## Main Runner
 
-- The gain is zero at the three vertices (certain beliefs) and maximised near the centre of the simplex, reflecting that measurement is most useful when uncertainty is highest.
-- The value map respects the 3-fold cyclic symmetry of the Trine geometry, confirmed numerically by `sanity_checks.json`.
-- The optimal angle α\* varies smoothly across most of the interior but shows degeneracy regions where multiple angles achieve the same value.
+Recommended run (writes directly to `phase1_one_step/results/`):
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase1_one_step/code/scripts/run_one_step.py \
+  --N 40 \
+  --M-alpha 120 \
+  --outdir phase1_one_step \
+  --tag results
+```
+
+## Default Configuration
+
+- Belief resolution: `N=40`
+- Angle library size: `M_alpha=120`
+- Batch size: `512`
+- Tie tolerance: `1e-10`
+
+Useful options:
+
+- `--N <int>`: belief lattice resolution
+- `--M-alpha <int>`: number of alpha samples
+- `--batch-size <int>`: solver batch size
+- `--tie-tol <float>`: near-tie threshold
+
+## Main Outputs
+
+`phase1_one_step/results/` contains:
+
+- `data/one_step_maps.npz`
+- `data/one_step_maps.csv`
+- `figures/figure_A_j1_star.png`
+- `figures/figure_B_gain.png`
+- `figures/figure_C_alpha_star.png`
+- `logs/sanity_checks.json`
+
+## Plot Interpretation Cheatsheet
+
+- `figure_A_j1_star`: belief별 한 번 측정 최적값 지도. 중앙부가 높으면 불확실 구간에서 측정 이득이 큼.
+- `figure_B_gain`: `J1*-S` 지도로, 측정할 가치가 있는 영역을 바로 보여줌.
+- `figure_C_alpha_star`: 최적 alpha 선택 패턴. 부드러운 영역 + near-tie 경계의 공존 여부를 본다.
+
+## Downstream Note
+
+Phase II/III/IV scripts can reuse:
+
+- `phase1_one_step/results/data/one_step_maps.npz`

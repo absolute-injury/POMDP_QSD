@@ -1,56 +1,94 @@
 # POMDP + QSD Simulation — Trine Geometry
 
-Numerical simulation study of **Quantum State Discrimination (QSD)** under the symmetric three-state (Trine) geometry. The project investigates the structure of optimal action (stop or continue measurement) strategies across three experimental phases, progressing from a single-step setting to a two-step sequential decision problem.
+## Goal
 
----
+This repository studies Trine-state quantum state discrimination (QSD) as a POMDP-style decision problem.
 
-## Background
+- Phase I: one-step optimal measurement angle map
+- Phase II: posterior branch routing diagnostics
+- Phase III: two-step sequential Bellman policy/value maps
+- Phase IV-B/D: discretization robustness and theorem-facing numerical synthesis
 
-The **Trine states** are three pure qubit states separated by 120° on the equatorial plane of the Bloch sphere. Discriminating among them is a canonical QSD problem. A key tunable parameter is the rotation angle **α** of the measurement basis.
-
-This project asks: *given a prior belief over which Trine state was sent, what measurement angle(s) maximize the probability of correct identification — and does adding a second measurement step actually help?*
-
----
-
-## Repository Structure
-
-```
-POMDP_QSD/
-├── phase1_one_step/              # Phase I  — single-step optimal angle map
-├── phase2_posterior_routing/     # Phase II — posterior belief routing analysis
-├── phase3_sequential/            # Phase III — two-step sequential Bellman solver
-├── pyproject.toml                # Package configuration (trine-one-step v0.1.0)
-└── __init__.py
-```
-
-Each phase folder contains a `code/` subtree (source + scripts) and a `results/` subtree (data, figures, logs/diagnostics).
-
----
-
-## Experimental Phases at a Glance
-
-| Phase | Question | Key output |
-|-------|----------|------------|
-| [Phase I](phase1_one_step/) | What is the best single measurement angle at every prior belief? | `j1_star` value map, gain surface, optimal α map |
-| [Phase II](phase2_posterior_routing/) | After one measurement, where does the posterior land — and does routing matter? | Branch route table, posterior routing figures, 5 case studies |
-| [Phase III](phase3_sequential/) | Does a second measurement add value, and by how much? | Bellman value maps V0/V1, decision maps D0/D1, cost-sweep animations |
-
----
-
-## Setup
-
-Python 3.10+ is required. Install the package in editable mode from the repository root:
+## Prerequisites
 
 ```bash
-pip install -e .
+python3 -m venv .venv
+.venv/bin/python -m pip install numpy matplotlib pillow imageio imageio-ffmpeg
 ```
 
-Dependencies: `numpy >= 1.24, < 2.0` and `matplotlib >= 3.7`.
+`MPLCONFIGDIR=/tmp/mpl` is recommended in headless environments.
 
-For Phase III animations, `imageio-ffmpeg` is also required:
+## Repository Layout
+
+- `phase1_one_step/` - Phase I package and outputs
+- `phase2_posterior_routing/` - Phase II package and outputs
+- `phase3_sequential/` - Phase III package and outputs
+- `phase4_bd/` - Phase IV-B/D package and outputs
+- `src/trine_one_step/` - shared core modules used by all phase scripts
+
+## Recommended Execution Order
+
+### Phase I
 
 ```bash
-pip install imageio-ffmpeg
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase1_one_step/code/scripts/run_one_step.py \
+  --N 40 \
+  --M-alpha 120 \
+  --outdir phase1_one_step \
+  --tag results
 ```
 
----
+See: `phase1_one_step/README.md`
+
+### Phase II
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase2_posterior_routing \
+  --tag results
+```
+
+See: `phase2_posterior_routing/README.md`
+
+### Phase III
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/run_phase3_sequential.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase3_sequential \
+  --tag results
+```
+
+Optional cost-sweep animations:
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase3_sequential/results/figures/animations
+```
+
+See: `phase3_sequential/README.md`
+
+### Phase IV-B/D
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_bd.py --outdir phase4_bd/results_full
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_focused_rerun.py --outdir phase4_bd/results_full/focused
+```
+
+See: `phase4_bd/README.md`
+
+## Core Artifacts To Keep
+
+If you are preserving only paper-core results, keep at least:
+
+- Phase I: `phase1_one_step/results/data/one_step_maps.npz`
+- Phase II: `phase2_posterior_routing/results/data/phase2_routing_raw.json`
+- Phase III: value/diagnostic NPZ+JSON and key static figures for `V0/V1/D0/D1`
+- Phase IV: `phase4_bd/results_full/data/phase4B_compare_summary.csv`, `phase4_bd/results_full/diagnostics/phase4D_summary.md`, focused summary files
+
+## Notes
+
+- Phase IV-D is numerical robustness evidence, not a formal convergence proof.
+- For detailed option descriptions and interpretation notes, use each phase README.

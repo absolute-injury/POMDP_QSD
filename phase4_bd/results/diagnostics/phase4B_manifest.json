@@ -1,0 +1,19 @@
+{
+  "baseline": "N80_M240",
+  "c_meas": 0.02,
+  "comparison_csv": "/Users/absolute_injury/Desktop/POMDP_QSD/phase4_bd/results/data/phase4B_compare_summary.csv",
+  "configs": [
+    "N80_M240",
+    "N40_M240",
+    "N120_M240",
+    "N80_M120",
+    "N80_M360"
+  ],
+  "phase4d_summary": "/Users/absolute_injury/Desktop/POMDP_QSD/phase4_bd/results/diagnostics/phase4D_summary.md",
+  "rep_audit_csv": "/Users/absolute_injury/Desktop/POMDP_QSD/phase4_bd/results/data/phase4_rep_point_audit.csv",
+  "scope": {
+    "axis_A": "completed",
+    "axis_C": "excluded_by_default",
+    "phase": "IV-B/IV-D"
+  }
+}

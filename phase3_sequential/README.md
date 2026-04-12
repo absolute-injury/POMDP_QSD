@@ -2,68 +2,84 @@
 
 ## Goal
 
-Extend the one-step analysis to a **horizon H = 2** sequential decision problem. At each stage the observer may either **stop and guess** or **measure** (paying a cost c_meas). The optimal policy is found by backward induction (Bellman recursion), yielding value functions and decision maps for both stages.
+Solve horizon-2 sequential control (`H=2`) on the Trine belief grid.
 
-## Method
+- Stage 2 terminal value: `V2(b)=max(b)`
+- Stage 1 decision: stop vs measure -> `V1`, `D1=V1-S`
+- Stage 0 decision: stop vs measure -> `V0`, `D0=V0-V1`
 
-### Backward induction
+This phase quantifies when a second measurement is worth its cost.
 
-**Stage 2 (terminal):** `V2(b) = max(b)` — the observer stops and picks the most probable state.
+## Prerequisites
 
-**Stage 1:** For each belief **b** and each candidate angle **α**, compute the expected value of reaching Stage 2 across all three outcomes, then subtract the measurement cost:
-
-```
-Q1(b, α) = c_meas · J1(b, α)  +  (1 − c_meas) · Σ_k P(k|b,α) · V2(posterior(b,α,k))
-```
-
-`V1(b) = max(stop, max_α Q1(b, α))` and the decision map `D1(b)` flags whether measuring is optimal at Stage 1.
-
-**Stage 0:** Analogously, `V0` and `D0` are computed by rolling one step further back, with `Q0` referencing `V1`.
-
-Two runs are produced:
-- **run0** — baseline cost `c_meas = 0` (measurement is free)
-- **run_eps** — small positive cost `c_meas = ε` (slight penalty for measuring)
-
-### Cost sweep animations
-
-The scripts additionally sweep `c_meas` from 0 to its maximum useful value, animating how the value surfaces and decision boundaries evolve.
-
-## Code
-
-| File | Role |
-|------|------|
-| `code/src/phase3.py` | Transition cache, Bellman solver, `Phase3Run` dataclass |
-| `code/src/phase3_plotting.py` | Static simplex figures for V0, V1, D0, D1, Δα |
-| `code/scripts/run_phase3_sequential.py` | Driver: build cache → solve both runs → save → plot |
-| `code/scripts/make_phase3_cost_gifs.py` | Cost-sweep driver: animate value/decision maps over c_meas |
-
-## Results
-
-```
-results/
-├── data/
-│   ├── phase3_values_run0.npz      # V0, V1, D0, D1, alpha maps for run0
-│   └── phase3_values_run_eps.npz   # same for run_eps
-├── diagnostics/
-│   ├── phase3_diag_run0.json       # solver diagnostics for run0
-│   ├── phase3_diag_run_eps.json    # solver diagnostics for run_eps
-│   └── phase3_summary.md           # human-readable summary and rerun guide
-└── figures/
-    ├── static/                     # 14 PNG figures (V0, V1, D0, D1, action, Δα × 2 runs)
-    └── animations/                 # 8 MP4 animations (cost sweep for each quantity)
-        ├── phase3_cost_sweep_panel_2x2.mp4   # main 2×2 interpretive panel
-        ├── phase3_cost_sweep_V0.mp4
-        ├── phase3_cost_sweep_V1.mp4
-        ├── phase3_cost_sweep_D0.mp4
-        ├── phase3_cost_sweep_D1.mp4
-        ├── phase3_cost_sweep_action_V0.mp4
-        ├── phase3_cost_sweep_action_V1.mp4
-        └── phase3_cost_sweep_delta_alpha_idx.mp4
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install numpy matplotlib pillow imageio imageio-ffmpeg
 ```
 
-## Key findings
+Phase I artifact is required:
 
-- When measurement is free (`c_meas = 0`), a second measurement always weakly improves performance; the gain is largest in the interior of the simplex.
-- As `c_meas` grows, the decision boundary contracts inward — near-certain beliefs become unprofitable to measure first.
-- The `Δα` map (change in optimal angle between Stage 0 and Stage 1) reveals that the sequential policy is **adaptive**: the first-step angle is adjusted anticipating the second-step correction.
-- The 2×2 panel animation (`phase3_cost_sweep_panel_2x2.mp4`) provides the clearest visual summary of how cost reshapes the entire policy.
+- `phase1_one_step/results/data/one_step_maps.npz`
+
+## Main Runner
+
+Recommended run (writes directly to `phase3_sequential/results/`):
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/run_phase3_sequential.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase3_sequential \
+  --tag results
+```
+
+Default policy:
+
+- Baseline run: `c0=0.0`
+- Sensitivity run: `c_eps=0.02`
+- `run_eps` is enabled unless `--skip-eps`
+
+Useful options:
+
+- `--c0 <float>` / `--c-eps <float>`
+- `--skip-eps`
+- `--decision-tol <float>`
+- `--plot-clip-tol <float>`
+
+## Main Outputs
+
+`phase3_sequential/results/` contains:
+
+- `phase3_values_run0.npz`
+- `phase3_diag_run0.json`
+- `phase3_values_run_eps.npz` (if not skipped)
+- `phase3_diag_run_eps.json` (if not skipped)
+- `phase3_summary.md`
+- `phase3_fig_[V1|V0|D1|D0]_[run0|run_eps].png/.pdf`
+- `phase3_fig_[action_V1|action_V0|delta_alpha_idx]_[run0|run_eps].png/.pdf`
+
+## Optional Cost-Sweep Animations
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase3_sequential/results/figures/animations
+```
+
+Animation outputs include:
+
+- `phase3_cost_sweep_panel_2x2.mp4`
+- `phase3_cost_sweep_[V0|V1|D0|D1].mp4`
+- `phase3_cost_sweep_action_[V0|V1].mp4`
+- `phase3_cost_sweep_delta_alpha_idx.mp4`
+
+## Plot Interpretation Cheatsheet
+
+- `phase3_fig_V1_*`: 1단계에서 측정 여부를 포함한 가치 구조.
+- `phase3_fig_V0_*`: 0단계에서 선행 측정의 총 기대가치.
+- `phase3_fig_D1_*`, `phase3_fig_D0_*`: `>0` 영역이 continuation 영역.
+- `phase3_fig_action_*`: 측정을 선택한 지점에서 최적 alpha 패턴.
+- `phase3_fig_delta_alpha_idx_*`: 0단계와 1단계 alpha 차이로 적응성 강도를 본다.
+
+## Notes
+
+This phase is the computational baseline that Phase IV-B/D stress-tests under discretization refinements.

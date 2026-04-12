@@ -1,0 +1,85 @@
+{
+  "action_gap_summary": {
+    "stage0_action_gap_min": 0.0,
+    "stage0_action_gap_q50": 0.00012523764113914204,
+    "stage0_action_gap_q95": 0.0010313754390987029,
+    "stage1_action_gap_min": 0.0,
+    "stage1_action_gap_q50": 0.00019448558890822198,
+    "stage1_action_gap_q95": 0.0018628399172103682
+  },
+  "config": {
+    "M_alpha": 240,
+    "N": 120,
+    "c_meas": 0.02,
+    "n_alpha": 240,
+    "n_beliefs": 7381,
+    "name": "N120_M240"
+  },
+  "disagreement_summaries": {
+    "vs_baseline": {
+      "baseline_config": "N80_M240",
+      "baseline_mapping_max_distance": 0.01020620726159662,
+      "baseline_mapping_mean_distance": 0.00614026685370586,
+      "stage0_alpha_disagreement_rate_all": 0.9474325972090503,
+      "stage0_alpha_disagreement_rate_measure_pairs": 0.9539680371533944,
+      "stage0_decision_disagreement_rate": 0.0012193469719550196,
+      "stage1_alpha_disagreement_rate_all": 0.939032651402249,
+      "stage1_alpha_disagreement_rate_measure_pairs": 0.947722283205269,
+      "stage1_decision_disagreement_rate": 0.003251591925213386
+    }
+  },
+  "memory_usage_summary": {
+    "estimated_total_payload_mb": 102.90322780609131,
+    "peak_rss_mb": 1709.609375,
+    "phase1_payload_mb": 0.797245979309082,
+    "phase3_payload_mb": 0.5490474700927734,
+    "transition_payload_mb": 101.55693435668945
+  },
+  "normalization": {
+    "nonnegativity": {
+      "min_posterior_coordinate": 0.0,
+      "min_probability": 0.0,
+      "pass_posterior": true,
+      "pass_probability": true,
+      "tolerance": 1e-12
+    },
+    "posterior": {
+      "max_abs_residual": 3.3306690738754696e-16,
+      "pass": true,
+      "tolerance": 1e-12
+    },
+    "probability": {
+      "max_abs_residual": 5.551115123125783e-16,
+      "pass": true,
+      "tolerance": 1e-12
+    }
+  },
+  "projection_stats": {
+    "max_distance": 0.006804138174397714,
+    "mean_distance": 0.003982252880140559,
+    "metric": "l2_belief_space",
+    "p95_distance": 0.00605746688306025
+  },
+  "region_stability": {
+    "D0_positive_fraction": 0.9918710201869665,
+    "D1_positive_fraction": 0.9898387752337082,
+    "stage0_continuation_fraction": 0.9918710201869665,
+    "stage1_continuation_fraction": 0.9898387752337082
+  },
+  "runtime_audit": {
+    "V0_pass": 0.09127691700000007,
+    "V1_pass": 0.07323566600000042,
+    "bellman_solve": 0.16499175000000044,
+    "phase1_solve": 0.42946095799999995,
+    "plotting": 1.63899495,
+    "preprocessing": 3.6311575,
+    "total_runtime": 6.372435617
+  },
+  "symmetry_audit": {
+    "max_abs_diff_D0_cyclic": 0.0008574005943404739,
+    "max_abs_diff_D1_cyclic": 0.0008574005943404739,
+    "max_abs_diff_V0_cyclic": 6.661338147750939e-16,
+    "max_abs_diff_V1_cyclic": 0.0008574005943404739,
+    "max_abs_diff_V2_cyclic": 0.0
+  }
+}

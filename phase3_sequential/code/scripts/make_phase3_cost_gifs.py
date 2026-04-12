@@ -13,8 +13,9 @@ from matplotlib.colors import Normalize, TwoSlopeNorm
 import numpy as np
 from PIL import Image
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = PROJECT_ROOT / "src"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+PHASE_ROOT = Path(__file__).resolve().parents[2]
+SRC_DIR = REPO_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -38,13 +39,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--phase1-npz",
         type=Path,
-        default=PROJECT_ROOT / "outputs/paper_final/data/one_step_maps.npz",
+        default=REPO_ROOT / "phase1_one_step/results/data/one_step_maps.npz",
         help="Phase I artifact used to reuse belief/alpha grids.",
     )
     parser.add_argument(
         "--outdir",
         type=Path,
-        default=PROJECT_ROOT / "outputs/phase3_sequential/gif",
+        default=PHASE_ROOT / "results/figures/animations",
         help="Output directory for GIF/MP4 files.",
     )
     parser.add_argument("--c-start", type=float, default=0.0, help="Start of cost sweep.")

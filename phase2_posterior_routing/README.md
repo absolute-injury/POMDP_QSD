@@ -2,58 +2,66 @@
 
 ## Goal
 
-After one Trine measurement, the observer's belief is updated via Bayes' rule to a **posterior** that depends on the prior, the chosen angle α\*, and the outcome received. Phase II traces these posterior trajectories — asking *where* in the belief simplex each branch lands, and whether the structure of these routes has practical implications.
+Trace posterior branches after one measurement and quantify how routing differs by representative priors.
 
-## Method
+- start from Phase I optimal policy (`alpha*`)
+- apply Bayes update for each outcome branch
+- compare posterior landing regions, branch probabilities, and route asymmetry
 
-Starting from five representative prior beliefs (labelled A–E, spanning the simplex), Phase II:
+## Prerequisites
 
-1. Loads the Phase I solution (`one_step_maps.npz`) to obtain α\* at each prior.
-2. Computes the three posterior beliefs (one per outcome) using Bayes' rule.
-3. Records which region of the simplex each posterior falls in, whether it is "near-certain", and how the routes differ across cases.
-
-The five representative cases cover the main regimes of interest:
-
-| Case | Role |
-|------|------|
-| A | Centre of simplex — maximum symmetry |
-| B | Edge-adjacent quasi-binary prior |
-| C | Near-certainty, vertex-adjacent |
-| D | Generic asymmetric interior point |
-| E | Off-centre interior |
-
-## Code
-
-| File | Role |
-|------|------|
-| `code/src/phase2.py` | Posterior computation, route classification, summary statistics |
-| `code/src/phase2_plotting.py` | Routing diagrams, Point E-focused diagnostics, per-case detail plots |
-| `code/scripts/run_phase2_posterior_routing.py` | End-to-end driver: load Phase I → route → save → plot |
-
-## Results
-
-```
-results/
-├── data/
-│   ├── phase2_branch_routes.csv   # per-branch route table (prior → posterior)
-│   ├── phase2_routing_raw.json    # full routing data including diagnostics
-│   └── phase2_summary.csv        # per-case summary statistics
-├── figures/
-│   ├── figure_D_phase2_posterior_routing.png/.pdf   # main routing overview
-│   ├── figure_D2_phase2_diagnostics.png/.pdf        # consistency + Point E diagnostics
-│   └── case_details/
-│       ├── figure_D_case_A_routing_detail.png/.pdf
-│       ├── figure_D_case_B_routing_detail.png/.pdf
-│       ├── figure_D_case_C_routing_detail.png/.pdf
-│       ├── figure_D_case_D_routing_detail.png/.pdf
-│       └── figure_D_case_E_routing_detail.png/.pdf
-└── logs/
-    ├── phase2_checks.json               # automated validation checks
-    └── phase2_interpretation_notes.txt  # annotated observations
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install numpy matplotlib
 ```
 
-## Key findings
+Phase I artifact is required:
 
-- Posterior branches from near-certain priors (Case C) collapse tightly toward the nearest vertex, confirming rapid certainty after one measurement.
-- Symmetric priors (Case A) produce three equiprobable branches related by cyclic permutation, consistent with the Trine symmetry.
-- Asymmetric priors (Cases D, E) produce notably unequal branch weights, motivating the adaptive two-step strategy explored in Phase III.
+- `phase1_one_step/results/data/one_step_maps.npz`
+
+## Main Runner
+
+Recommended run (writes directly to `phase2_posterior_routing/results/`):
+
+```bash
+MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
+  --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
+  --outdir phase2_posterior_routing \
+  --tag results
+```
+
+Default policy for representative beliefs:
+
+- Cases: `A, B, C, D, E`
+- Snap metric: `linf`
+- Near-tie gap threshold: `1e-6`
+
+Useful options:
+
+- `--snap-metric {linf,l1,l2}`
+- `--near-tie-gap <float>`
+- `--prob-tol <float>`
+- `--posterior-tol <float>`
+
+## Main Outputs
+
+`phase2_posterior_routing/results/` contains:
+
+- `data/phase2_routing_raw.json`
+- `data/phase2_summary.csv`
+- `data/phase2_branch_routes.csv`
+- `figures/figure_D_phase2_posterior_routing.png/.pdf`
+- `figures/figure_D2_phase2_diagnostics.png/.pdf`
+- `figures/case_details/figure_D_case_[A-E]_routing_detail.png/.pdf`
+- `logs/phase2_checks.json`
+- `logs/phase2_interpretation_notes.txt`
+
+## Plot Interpretation Cheatsheet
+
+- `figure_D_phase2_posterior_routing`: 각 case에서 outcome branch가 simplex 어디로 이동하는지 본다.
+- `figure_D2_phase2_diagnostics`: 정규화/일관성 체크와 near-tie 민감 영역을 함께 점검한다.
+- `case_details/*`: A~E를 개별 확대해서 branch 확률 불균형과 도착점 구조를 읽는다.
+
+## Notes
+
+This phase is descriptive/diagnostic. It motivates the adaptive sequential policy solved in Phase III.

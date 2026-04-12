@@ -8,8 +8,9 @@ from pathlib import Path
 
 import numpy as np
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = PROJECT_ROOT / "src"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+PHASE_ROOT = Path(__file__).resolve().parents[2]
+SRC_DIR = REPO_ROOT / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -23,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--M-alpha", dest="M_alpha", type=int, default=120, help="Alpha samples")
     parser.add_argument("--batch-size", type=int, default=512, help="Belief batch size")
     parser.add_argument("--tie-tol", type=float, default=1e-10, help="Tie tolerance")
-    parser.add_argument("--outdir", type=Path, default=PROJECT_ROOT / "outputs", help="Output directory")
+    parser.add_argument("--outdir", type=Path, default=PHASE_ROOT / "results", help="Output directory")
     parser.add_argument("--tag", type=str, default="", help="Optional run folder name")
     return parser.parse_args()
 

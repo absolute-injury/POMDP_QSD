@@ -1,51 +1,11 @@
-from .core import (
-    BeliefGrid,
-    likelihood,
-    likelihood_table,
-    make_alpha_grid,
-    make_belief_grid,
-    one_step_curve,
-    one_step_value,
-    posterior,
-)
-from .solver import OneStepMaps, run_sanity_checks, solve_one_step_maps
-from .phase2 import (
-    DEFAULT_TARGETS,
-    RepresentativeTarget,
-    build_interpretation_note,
-    load_phase1_npz,
-    make_branch_rows,
-    make_summary_rows,
-    run_phase2_posterior_routing,
-)
-from .phase3 import (
-    Phase3Run,
-    TransitionCache,
-    build_transition_cache,
-    solve_phase3_h2,
-)
+from __future__ import annotations
 
-__all__ = [
-    "BeliefGrid",
-    "OneStepMaps",
-    "DEFAULT_TARGETS",
-    "Phase3Run",
-    "RepresentativeTarget",
-    "TransitionCache",
-    "build_interpretation_note",
-    "build_transition_cache",
-    "likelihood",
-    "likelihood_table",
-    "load_phase1_npz",
-    "make_alpha_grid",
-    "make_belief_grid",
-    "make_branch_rows",
-    "make_summary_rows",
-    "one_step_curve",
-    "one_step_value",
-    "posterior",
-    "run_phase2_posterior_routing",
-    "run_sanity_checks",
-    "solve_phase3_h2",
-    "solve_one_step_maps",
-]
+import sys
+from pathlib import Path
+
+# Compatibility shim: allow imports from repository root without installation.
+_SRC = Path(__file__).resolve().parent / "src"
+if _SRC.exists() and str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
+from trine_one_step import *  # noqa: F401,F403
