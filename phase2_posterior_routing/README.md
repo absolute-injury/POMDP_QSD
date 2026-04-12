@@ -58,9 +58,9 @@ Useful options:
 
 ## Plot Interpretation Cheatsheet
 
-- `figure_D_phase2_posterior_routing`: 각 case에서 outcome branch가 simplex 어디로 이동하는지 본다.
-- `figure_D2_phase2_diagnostics`: 정규화/일관성 체크와 near-tie 민감 영역을 함께 점검한다.
-- `case_details/*`: A~E를 개별 확대해서 branch 확률 불균형과 도착점 구조를 읽는다.
+- `figure_D_phase2_posterior_routing`: Observe the movement of outcome branches on the simplex for each case.
+- `figure_D2_phase2_diagnostics`: Simultaneously examine normalization/consistency checks and whether it lies in near-tie sensitive regions.
+- `case_details/*`: Individually magnify A–E to examine branch probability imbalance and the resulting endpoint structures.
 
 ## Notes
 
