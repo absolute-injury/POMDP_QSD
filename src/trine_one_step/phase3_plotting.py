@@ -171,14 +171,21 @@ def _plot_difference_map(
     _decorate_simplex(ax)
     ax.set_title(title)
     ax.text(
-        0.015,
-        0.015,
+        0.02,
+        0.98,
         f"tiny negatives clipped: {int(np.count_nonzero(tiny_negative))}",
         transform=ax.transAxes,
-        fontsize=12,
+        fontsize=11,
         ha="left",
-        va="bottom",
+        va="top",
         color="#2b2b2b",
+        bbox={
+            "boxstyle": "round,pad=0.25",
+            "facecolor": "white",
+            "edgecolor": "#b0b0b0",
+            "linewidth": 0.6,
+            "alpha": 0.82,
+        },
     )
 
     cbar = fig.colorbar(mesh, ax=ax, fraction=0.05, pad=0.03, shrink=0.95)
@@ -231,14 +238,21 @@ def _plot_best_action_map(
     _decorate_simplex(ax)
     ax.set_title(title)
     ax.text(
-        0.015,
-        0.015,
+        0.02,
+        0.98,
         f"measure fraction: {float(np.mean(measured)):.4f}",
         transform=ax.transAxes,
-        fontsize=12,
+        fontsize=11,
         ha="left",
-        va="bottom",
+        va="top",
         color="#2b2b2b",
+        bbox={
+            "boxstyle": "round,pad=0.25",
+            "facecolor": "white",
+            "edgecolor": "#b0b0b0",
+            "linewidth": 0.6,
+            "alpha": 0.82,
+        },
     )
 
     cbar = fig.colorbar(mesh, ax=ax, fraction=0.05, pad=0.03, shrink=0.95)

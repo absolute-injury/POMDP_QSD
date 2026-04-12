@@ -1,0 +1,77 @@
+{
+  "action_stability": {
+    "stage0": {
+      "change_fraction_all_edges": 0.9085390946502058,
+      "change_fraction_measure_pairs": 0.9122643463849182,
+      "measure_pair_edges": 9654,
+      "neighbor_edges": 9720
+    },
+    "stage1": {
+      "change_fraction_all_edges": 0.9505144032921811,
+      "change_fraction_measure_pairs": 0.9570967406018952,
+      "measure_pair_edges": 9603,
+      "neighbor_edges": 9720
+    }
+  },
+  "branch_statistics": {
+    "stage0_measure_fraction": 0.992773261065944,
+    "stage0_stop_fraction": 0.0072267389340560095,
+    "stage1_measure_fraction": 0.988256549232159,
+    "stage1_stop_fraction": 0.011743450767841002
+  },
+  "c_meas": 0.02,
+  "decision_tol": 1e-12,
+  "map_consistency": {
+    "large_negative_count_D0": 0,
+    "large_negative_count_D1": 0,
+    "min_D0_raw": 0.0,
+    "min_D1_raw": 0.0,
+    "tiny_negative_count_D0": 0,
+    "tiny_negative_count_D1": 0
+  },
+  "symmetry_spot_check": {
+    "max_abs_diff_D0_cyclic": 0.003433794309210536,
+    "max_abs_diff_D1_cyclic": 0.003433794309210425,
+    "max_abs_diff_V0_cyclic": 6.661338147750939e-16,
+    "max_abs_diff_V1_cyclic": 0.003433794309210425,
+    "max_abs_diff_V2_cyclic": 0.0
+  },
+  "timing_seconds": {
+    "bellman_solve": 0.028969291000001007,
+    "stage0_pass": 0.013159124999999605,
+    "stage1_pass": 0.015634125000000054,
+    "total_with_precompute": 0.545213916000001
+  },
+  "tiny_negative_tol": 1e-10,
+  "transition_checks": {
+    "n_alpha": 240,
+    "n_beliefs": 3321,
+    "nonnegativity": {
+      "min_posterior_coordinate": 0.0,
+      "min_probability": 0.0,
+      "pass_posterior": true,
+      "pass_probability": true,
+      "tolerance": 1e-12
+    },
+    "posterior_normalization": {
+      "max_abs_residual": 4.440892098500626e-16,
+      "pass": true,
+      "tolerance": 1e-12
+    },
+    "probability_normalization": {
+      "max_abs_residual": 6.661338147750939e-16,
+      "pass": true,
+      "tolerance": 1e-12
+    },
+    "projection_audit": {
+      "max_distance": 0.010202326171430178,
+      "mean_distance": 0.005901645626979273,
+      "metric": "l2_belief_space",
+      "p95_distance": 0.009065493977232091
+    },
+    "timing_seconds": {
+      "precompute_transition_cache": 0.516244625
+    },
+    "zero_probability_events": 3
+  }
+}
