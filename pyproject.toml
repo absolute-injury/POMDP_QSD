@@ -3,13 +3,20 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "trine-one-step"
+name = "pomdp-qsd-trine"
 version = "0.1.0"
-description = "Trine one-step geometry solver"
+description = "Multi-phase POMDP-style trine QSD simulation and reproducibility toolkit"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.24,<2.0",
   "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+media = [
+  "Pillow>=10.0",
+  "imageio>=2.34",
+  "imageio-ffmpeg>=0.4.9",
 ]
 
 [tool.setuptools.packages.find]

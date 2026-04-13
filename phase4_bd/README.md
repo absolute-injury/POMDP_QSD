@@ -10,13 +10,17 @@ Implement the narrowed Phase IV scope:
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install numpy matplotlib pillow imageio imageio-ffmpeg
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
+
+Tested environment: Python `3.12.7` on macOS; in headless setups, use `MPLCONFIGDIR=/tmp/mpl`.
 
 ## Main Runner
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_bd.py --outdir phase4_bd/results_full
+MPLCONFIGDIR=/tmp/mpl python phase4_bd/code/scripts/run_phase4_bd.py --outdir phase4_bd/results_full
 ```
 
 Default matrix and policy:
@@ -49,7 +53,7 @@ Useful options:
 ## Optional B-4 Focused Rerun
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_focused_rerun.py
+MPLCONFIGDIR=/tmp/mpl python phase4_bd/code/scripts/run_phase4_focused_rerun.py
 ```
 
 Focused outputs are stored under `results_full/focused/` by default.

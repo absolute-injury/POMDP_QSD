@@ -1,7 +1,7 @@
 # Phase III Summary
 
 ## Configuration
-- Phase I source: `/Users/absolute_injury/Desktop/2026QSD_simulation/outputs/paper_final/data/one_step_maps.npz`
+- Phase I source: `phase1_one_step/results/data/one_step_maps.npz`
 - Belief resolution N: `80`
 - Number of grid points: `3321`
 - Alpha samples M_alpha: `240`
@@ -22,9 +22,9 @@
 - Nonnegativity pass (prob/post): `True` / `True`
 
 ## Outputs
-- `phase3_values_run0.npz`: `/Users/absolute_injury/Desktop/2026QSD_simulation/outputs/phase3_sequential/phase3_values_run0.npz`
-- `phase3_diag_run0.json`: `/Users/absolute_injury/Desktop/2026QSD_simulation/outputs/phase3_sequential/phase3_diag_run0.json`
-- `phase3_values_run_eps.npz`: `/Users/absolute_injury/Desktop/2026QSD_simulation/outputs/phase3_sequential/phase3_values_run_eps.npz`
+- `phase3_values_run0.npz`: `phase3_sequential/results/phase3_values_run0.npz`
+- `phase3_diag_run0.json`: `phase3_sequential/results/phase3_diag_run0.json`
+- `phase3_values_run_eps.npz`: `phase3_sequential/results/phase3_values_run_eps.npz`
 
 ## Notes
 - D1 and D0 are kept raw in arrays. Tiny negative numerical residues are clipped only in plotting.

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import shutil
-import sys
 from pathlib import Path
 
 import imageio.v2 as imageio
@@ -15,9 +14,6 @@ from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PHASE_ROOT = Path(__file__).resolve().parents[2]
-SRC_DIR = REPO_ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
 
 from trine_one_step.core import SQRT3_OVER_2, TWO_PI_OVER_3
 from trine_one_step.phase2 import load_phase1_npz

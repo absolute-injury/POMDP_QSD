@@ -5,16 +5,12 @@ import argparse
 import csv
 import json
 import os
-import sys
 from pathlib import Path
 from time import perf_counter
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PHASE_ROOT = Path(__file__).resolve().parents[2]
-SRC_DIR = REPO_ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
 
 from trine_one_step.phase4 import (
     build_comparison_rows,
@@ -180,27 +176,27 @@ def main() -> None:
             "baseline": baseline_name,
             "c_meas": args.c_meas,
             "configs": [config.name for config in configs],
-            "comparison_csv": str(comparison_csv_path.resolve()),
-            "rep_audit_csv": str(rep_csv_path.resolve()),
-            "phase4d_summary": str(summary_path.resolve()),
+            "comparison_csv": _display_path(comparison_csv_path),
+            "rep_audit_csv": _display_path(rep_csv_path),
+            "phase4d_summary": _display_path(summary_path),
         },
     )
 
     print("[run] completed phase4_bd")
     print(f"[cfg] baseline={baseline_name}, c_meas={args.c_meas:.6f}")
     for config in configs:
-        print(f"[data] {(data_dir / f'phase4B_values_{config.name}.npz').resolve()}")
-        print(f"[diag] {(diag_dir / f'phase4B_diag_{config.name}.json').resolve()}")
-    print(f"[data] {comparison_csv_path.resolve()}")
-    print(f"[diag] {comparison_json_path.resolve()}")
-    print(f"[data] {rep_csv_path.resolve()}")
+        print(f"[data] {_display_path(data_dir / f'phase4B_values_{config.name}.npz')}")
+        print(f"[diag] {_display_path(diag_dir / f'phase4B_diag_{config.name}.json')}")
+    print(f"[data] {_display_path(comparison_csv_path)}")
+    print(f"[diag] {_display_path(comparison_json_path)}")
+    print(f"[data] {_display_path(rep_csv_path)}")
     if not args.skip_rep_md:
-        print(f"[data] {rep_md_path.resolve()}")
+        print(f"[data] {_display_path(rep_md_path)}")
     for key, paths in fig_paths.items():
-        print(f"[fig ] {key}: {paths['png'].resolve()}")
-        print(f"[fig ] {key}: {paths['pdf'].resolve()}")
-    print(f"[note] {summary_path.resolve()}")
-    print(f"[note] {manifest_path.resolve()}")
+        print(f"[fig ] {key}: {_display_path(paths['png'])}")
+        print(f"[fig ] {key}: {_display_path(paths['pdf'])}")
+    print(f"[note] {_display_path(summary_path)}")
+    print(f"[note] {_display_path(manifest_path)}")
 
 
 def _parse_int_csv(text: str) -> list[int]:
@@ -227,6 +223,16 @@ def _save_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
+
+
+def _display_path(path: Path) -> str:
+    candidate = Path(path)
+    if candidate.is_absolute():
+        try:
+            return candidate.relative_to(REPO_ROOT).as_posix()
+        except ValueError:
+            return candidate.as_posix()
+    return candidate.as_posix()
 
 
 if __name__ == "__main__":

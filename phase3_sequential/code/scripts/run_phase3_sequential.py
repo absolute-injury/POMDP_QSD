@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -11,9 +10,6 @@ import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PHASE_ROOT = Path(__file__).resolve().parents[2]
-SRC_DIR = REPO_ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
 
 from trine_one_step.phase2 import load_phase1_npz
 from trine_one_step.phase3 import build_transition_cache, solve_phase3_h2
@@ -155,28 +151,28 @@ def main() -> None:
     summary_path.write_text(summary_text, encoding="utf-8")
 
     print(f"[run] completed {args.tag}")
-    print(f"[phase1] {args.phase1_npz.resolve()}")
+    print(f"[phase1] {_display_path(args.phase1_npz)}")
     print(f"[summary] N={resolution}, points={beliefs.shape[0]}, M_alpha={alpha_grid.size}")
-    print(f"[data] {values_run0.resolve()}")
-    print(f"[log ] {diag_run0.resolve()}")
+    print(f"[data] {_display_path(values_run0)}")
+    print(f"[log ] {_display_path(diag_run0)}")
     for key in ("V1", "V0", "D1", "D0"):
-        print(f"[fig ] {key} png: {fig_paths[key]['png'].resolve()}")
-        print(f"[fig ] {key} pdf: {fig_paths[key]['pdf'].resolve()}")
+        print(f"[fig ] {key} png: {_display_path(fig_paths[key]['png'])}")
+        print(f"[fig ] {key} pdf: {_display_path(fig_paths[key]['pdf'])}")
     optional_keys = [key for key in fig_paths.keys() if key not in {"V1", "V0", "D1", "D0"}]
     for key in optional_keys:
-        print(f"[fig ] {key} png: {fig_paths[key]['png'].resolve()}")
-        print(f"[fig ] {key} pdf: {fig_paths[key]['pdf'].resolve()}")
+        print(f"[fig ] {key} png: {_display_path(fig_paths[key]['png'])}")
+        print(f"[fig ] {key} pdf: {_display_path(fig_paths[key]['pdf'])}")
     if values_run_eps is not None:
-        print(f"[data] {values_run_eps.resolve()}")
+        print(f"[data] {_display_path(values_run_eps)}")
     if fig_paths_eps is not None:
         for key in ("V1", "V0", "D1", "D0"):
-            print(f"[fig ] {key} run_eps png: {fig_paths_eps[key]['png'].resolve()}")
-            print(f"[fig ] {key} run_eps pdf: {fig_paths_eps[key]['pdf'].resolve()}")
+            print(f"[fig ] {key} run_eps png: {_display_path(fig_paths_eps[key]['png'])}")
+            print(f"[fig ] {key} run_eps pdf: {_display_path(fig_paths_eps[key]['pdf'])}")
         optional_eps_keys = [key for key in fig_paths_eps.keys() if key not in {"V1", "V0", "D1", "D0"}]
         for key in optional_eps_keys:
-            print(f"[fig ] {key} run_eps png: {fig_paths_eps[key]['png'].resolve()}")
-            print(f"[fig ] {key} run_eps pdf: {fig_paths_eps[key]['pdf'].resolve()}")
-    print(f"[note] {summary_path.resolve()}")
+            print(f"[fig ] {key} run_eps png: {_display_path(fig_paths_eps[key]['png'])}")
+            print(f"[fig ] {key} run_eps pdf: {_display_path(fig_paths_eps[key]['pdf'])}")
+    print(f"[note] {_display_path(summary_path)}")
 
 
 def _save_phase3_npz(
@@ -243,7 +239,7 @@ def _build_summary(
         "# Phase III Summary",
         "",
         "## Configuration",
-        f"- Phase I source: `{phase1_path.resolve()}`",
+        f"- Phase I source: `{_display_path(phase1_path)}`",
         f"- Belief resolution N: `{resolution}`",
         f"- Number of grid points: `{n_beliefs}`",
         f"- Alpha samples M_alpha: `{n_alpha}`",
@@ -266,12 +262,12 @@ def _build_summary(
         f"`{run0.diagnostics['transition_checks']['nonnegativity']['pass_posterior']}`",
         "",
         "## Outputs",
-        f"- `phase3_values_run0.npz`: `{values_run0.resolve()}`",
-        f"- `phase3_diag_run0.json`: `{diag_run0.resolve()}`",
+        f"- `phase3_values_run0.npz`: `{_display_path(values_run0)}`",
+        f"- `phase3_diag_run0.json`: `{_display_path(diag_run0)}`",
     ]
 
     if values_run_eps is not None:
-        lines.append(f"- `phase3_values_run_eps.npz`: `{values_run_eps.resolve()}`")
+        lines.append(f"- `phase3_values_run_eps.npz`: `{_display_path(values_run_eps)}`")
     lines.extend(
         [
             "",
@@ -282,6 +278,16 @@ def _build_summary(
         ]
     )
     return "\n".join(lines)
+
+
+def _display_path(path: Path) -> str:
+    candidate = Path(path)
+    if candidate.is_absolute():
+        try:
+            return candidate.relative_to(REPO_ROOT).as_posix()
+        except ValueError:
+            return candidate.as_posix()
+    return candidate.as_posix()
 
 
 if __name__ == "__main__":

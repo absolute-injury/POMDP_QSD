@@ -12,8 +12,12 @@ Trace posterior branches after one measurement and quantify how routing differs 
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install numpy matplotlib
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
+
+Tested environment: Python `3.12.7` on macOS; in headless setups, use `MPLCONFIGDIR=/tmp/mpl`.
 
 Phase I artifact is required:
 
@@ -24,7 +28,7 @@ Phase I artifact is required:
 Recommended run (writes directly to `phase2_posterior_routing/results/`):
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
+MPLCONFIGDIR=/tmp/mpl python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase2_posterior_routing \
   --tag results

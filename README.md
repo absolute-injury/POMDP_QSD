@@ -9,14 +9,26 @@ This repository provides numerical experiments and visualization code for trine-
 - Phase III: two-step sequential Bellman policy/value maps
 - Phase IV-B/D: discretization-robustness experiments and numerical consistency checks related to selected theoretical claims in the paper
 
-## Prerequisites
+## Installation (Primary Path)
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install numpy matplotlib pillow imageio imageio-ffmpeg
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
 
-`MPLCONFIGDIR=/tmp/mpl` is recommended in headless environments.
+For animation/media outputs (Phase III cost-sweep MP4/GIF), install optional extras:
+
+```bash
+python -m pip install -e ".[media]"
+```
+
+## Tested Environment
+
+- Python: `3.12.7` (also targets `>=3.10` per `pyproject.toml`)
+- OS: macOS (Apple Silicon)
+- Headless rendering tip: set `MPLCONFIGDIR=/tmp/mpl`
 
 ## Repository Layout
 
@@ -26,12 +38,14 @@ python3 -m venv .venv
 - `phase4_bd/` - Phase IV-B/D package and outputs
 - `src/trine_one_step/` - shared core modules used by all phase scripts
 
+Canonical source code lives in `src/trine_one_step/`; phase folders keep run scripts and generated outputs.
+
 ## Recommended Execution Order
 
 ### Phase I
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase1_one_step/code/scripts/run_one_step.py \
+MPLCONFIGDIR=/tmp/mpl python phase1_one_step/code/scripts/run_one_step.py \
   --N 40 \
   --M-alpha 120 \
   --outdir phase1_one_step \
@@ -43,7 +57,7 @@ See: `phase1_one_step/README.md`
 ### Phase II
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
+MPLCONFIGDIR=/tmp/mpl python phase2_posterior_routing/code/scripts/run_phase2_posterior_routing.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase2_posterior_routing \
   --tag results
@@ -54,7 +68,7 @@ See: `phase2_posterior_routing/README.md`
 ### Phase III
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/run_phase3_sequential.py \
+MPLCONFIGDIR=/tmp/mpl python phase3_sequential/code/scripts/run_phase3_sequential.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase3_sequential \
   --tag results
@@ -63,7 +77,7 @@ MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/run_phase3
 Optional cost-sweep animations:
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
+MPLCONFIGDIR=/tmp/mpl python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase3_sequential/results/figures/animations
 ```
@@ -73,8 +87,8 @@ See: `phase3_sequential/README.md`
 ### Phase IV-B/D
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_bd.py --outdir phase4_bd/results_full
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase4_bd/code/scripts/run_phase4_focused_rerun.py --outdir phase4_bd/results_full/focused
+MPLCONFIGDIR=/tmp/mpl python phase4_bd/code/scripts/run_phase4_bd.py --outdir phase4_bd/results_full
+MPLCONFIGDIR=/tmp/mpl python phase4_bd/code/scripts/run_phase4_focused_rerun.py --outdir phase4_bd/results_full/focused
 ```
 
 See: `phase4_bd/README.md`

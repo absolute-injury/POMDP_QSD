@@ -14,8 +14,13 @@ This phase will also quantify when a second measurement is worth its cost.
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install numpy matplotlib pillow imageio imageio-ffmpeg
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
+python -m pip install -e ".[media]"
 ```
+
+Tested environment: Python `3.12.7` on macOS; in headless setups, use `MPLCONFIGDIR=/tmp/mpl`.
 
 Phase I artifact is required:
 
@@ -26,7 +31,7 @@ Phase I artifact is required:
 Recommended run (writes directly to `phase3_sequential/results/`):
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/run_phase3_sequential.py \
+MPLCONFIGDIR=/tmp/mpl python phase3_sequential/code/scripts/run_phase3_sequential.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase3_sequential \
   --tag results
@@ -60,7 +65,7 @@ Useful options:
 ## Optional Cost-Sweep Animations
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
+MPLCONFIGDIR=/tmp/mpl python phase3_sequential/code/scripts/make_phase3_cost_gifs.py \
   --phase1-npz phase1_one_step/results/data/one_step_maps.npz \
   --outdir phase3_sequential/results/figures/animations
 ```

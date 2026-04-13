@@ -14,15 +14,19 @@ This phase also computes `G(b)=J1*(b)-S(b)` with `S(b)=max(b)` to quantify the b
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install numpy matplotlib
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
 ```
+
+Tested environment: Python `3.12.7` on macOS; in headless setups, use `MPLCONFIGDIR=/tmp/mpl`.
 
 ## Main Runner
 
 Recommended run (writes directly to `phase1_one_step/results/`):
 
 ```bash
-MPLCONFIGDIR=/tmp/mpl .venv/bin/python phase1_one_step/code/scripts/run_one_step.py \
+MPLCONFIGDIR=/tmp/mpl python phase1_one_step/code/scripts/run_one_step.py \
   --N 40 \
   --M-alpha 120 \
   --outdir phase1_one_step \

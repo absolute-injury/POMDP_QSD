@@ -5,16 +5,12 @@ import argparse
 import csv
 import json
 import os
-import sys
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-SRC_DIR = REPO_ROOT / "src"
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
 
 from trine_one_step.core import SQRT3_OVER_2, make_alpha_grid, likelihood_table
 
