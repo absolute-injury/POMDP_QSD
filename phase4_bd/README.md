@@ -68,7 +68,7 @@ Focused outputs:
 ## Plot Interpretation Cheatsheet
 
 - `phase4B_fig_compare_values`: Comparison of absolute deviations in V1/V0/D1/D0 relative to the baseline. Minimal deviations without configuration-specific spikes indicate high structural stability.
-- `phase4B_fig_compare_policy`: Comparison of decision disagreement and measurement-index disagreement across discretization settings. Low decision agreement suggests that the stop/continue structure is relatively stable, even wehn the selected measurement index may vary.
+- `phase4B_fig_compare_policy`: Comparison of decision disagreement and measurement-index disagreement across discretization settings. Low decision disagreement suggests that the stop/continue structure is relatively stable, even when the selected measurement index may vary.
 - `phase4B_fig_compare_region`: Comparison of `D1 > 0`, `D0 > 0`, and continuation fractions across discretization settings. Small changes across settings are consistent with a stable continuation-region geometry.
 - `phase4B_focused_map_D0_error`: Map the distribution of top-k suspicious boundary points on the simplex and identify regions with high baseline D0 exact errors.
 - `phase4B_focused_sorted_error`: Comparative view of local exact-error curves across baseline, coarse, and refined grids. Lower errors on refined grids suggest that some deviations observed on coarse grids are likely to be discretization artifacts.
