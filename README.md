@@ -2,12 +2,12 @@
 
 ## Goal
 
-This repository studies trine-state quantum state discrimination (QSD) as a POMDP-style decision problem.
+This repository provides numerical experiments and visualization code for trine-state quantum state discrimination (QSD) viewed through a POMDP-style decision framework. The repository is intended to support the paper's problem modeling, conceptual interpretation, and provide reproducibility within the current numerical simulations.
 
 - Phase I: one-step optimal measurement angle map
 - Phase II: posterior branch routing diagnostics
 - Phase III: two-step sequential Bellman policy/value maps
-- Phase IV-B/D: discretization robustness and numerical proof-of-concept checks related to selected theoretical claims in the paper
+- Phase IV-B/D: discretization-robustness experiments and numerical consistency checks related to selected theoretical claims in the paper
 
 ## Prerequisites
 
@@ -90,5 +90,5 @@ If you are preserving only paper-core results, keep at least:
 
 ## Notes
 
-- Phase IV-B/D is mainly about numerical robustness evidence, not a formal convergence proof.
+- Phase IV-B/D is intended as numerical evidence and consistency checking for selected theoretical claims, not as a formal proof or a standalone convergence argument.
 - For detailed option descriptions and interpretation notes, use each phase README.
