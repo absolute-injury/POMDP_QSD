@@ -1,15 +1,16 @@
 # POMDP + QSD Simulation — Trine Geometry
 
-## Goal
+## Goal of this repository and What each phase does
 
-This repository provides numerical experiments and visualization code for trine-state quantum state discrimination (QSD) viewed through a POMDP-style decision framework. The repository is intended to support the paper's problem modeling, conceptual interpretation, and provide reproducibility within the current numerical simulations.
+This repository contains numerical experiments, visualizations, and diagnostic scripts for trine-state quantum state discrimination (QSD) viewed through a POMDP-style decision framework. This repository is provided to ensure reproducibility and facilitate the computational interpretation of our findings.
 
-- Phase I: one-step optimal measurement angle map
-- Phase II: posterior branch routing diagnostics
-- Phase III: two-step sequential Bellman policy/value maps
-- Phase IV-B/D: discretization-robustness experiments and numerical consistency checks related to selected theoretical claims in the paper
+- **Phase I** computes one-step optimal measurement-angle maps.
+- **Phase II** analyzes posterior branch routing and representative belief updates.
+- **Phase III** generates two-step sequential Bellman value/policy maps and related diagnostics.
+- **Phase IV-B/D** runs discretization-robustness experiments and numerical consistency checks, related to selected theoretical claims in the paper.
 
-## Installation (Primary Path)
+## Installation
+Create a virtual environment, install the required packages, and run the four phase scripts from the repository root.
 
 ```bash
 python3 -m venv .venv
@@ -28,9 +29,9 @@ python -m pip install -e ".[media]"
 
 - Python: `3.12.7` (also targets `>=3.10` per `pyproject.toml`)
 - OS: macOS (Apple Silicon)
-- Headless rendering tip: set `MPLCONFIGDIR=/tmp/mpl`
+- Headless rendering tip: set `MPLCONFIGDIR=/tmp/mpl`. In such headless environments, setting `MPLCONFIGDIR=/tmp/mpl` helps prevent Matplotlib cache permission issues.
 
-## Repository Layout
+## Repository Structure
 
 - `phase1_one_step/` - Phase I package and outputs
 - `phase2_posterior_routing/` - Phase II package and outputs
@@ -38,9 +39,9 @@ python -m pip install -e ".[media]"
 - `phase4_bd/` - Phase IV-B/D package and outputs
 - `src/trine_one_step/` - shared core modules used by all phase scripts
 
-Canonical source code lives in `src/trine_one_step/`; phase folders keep run scripts and generated outputs.
+Canonical source code resides in `src/trine_one_step/`, while phase-specific folders contain the execution scripts and generated outputs.
 
-## Recommended Execution Order
+## Recommended Run Order
 
 ### Phase I
 
@@ -93,7 +94,7 @@ MPLCONFIGDIR=/tmp/mpl python phase4_bd/code/scripts/run_phase4_focused_rerun.py 
 
 See: `phase4_bd/README.md`
 
-## Core Artifacts To Keep
+## Minimal Artifacts Supporting the Main Results
 
 If you are preserving only paper-core results, keep at least:
 
