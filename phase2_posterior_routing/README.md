@@ -65,7 +65,7 @@ Useful options:
 
 `figure_D_phase2_posterior_routing` presents five representative priors (Cases A-E) on the simplex and shows posterior routing under the Phase I decision rule `alpha*(b)`. Broadly speaking, the figure is intended to summarize routing geometry and branch balance across qualitatively different prior regions.
 
-The representative cases are defined from fixed target priors (center/symmetry, edge-adjacent quasi-binary, near-certainty, generic interior, and off-center interior) and then snapped to the nearest valid grid point under the selected metric ($L_inf$ by default). For Point E, near-switching validity is checked through the argmax-gap criterion; if the target does not satisfy the threshold, the smallest-gap backup candidate is selected.
+The representative cases are defined from fixed target priors (center/symmetry, edge-adjacent quasi-binary, near-certainty, generic interior, and off-center interior) and then snapped to the nearest valid grid point under the selected metric ($L_\inf$ by default). For Point E, near-switching validity is checked through the argmax-gap criterion; if the target does not satisfy the threshold, the smallest-gap backup candidate is selected.
 
 Within each panel, the star marks the starting belief, arrows indicate outcome-conditioned Bayesian updates, and terminal markers show posterior beliefs. Labels `p(o1)`, `p(o2)`, and `p(o3)` report branch probabilities. Arrow direction and endpoint placement should be read as routing structure, while exact quantitative detail should be taken from the accompanying tables and CSV outputs.
 
