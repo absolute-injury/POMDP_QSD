@@ -1,6 +1,6 @@
 {
   "center_point_A_symmetry": {
-    "branch_length_spread": 8.606637656743965e-05,
+    "branch_length_spread": 8.606637656749516e-05,
     "dominant_hypotheses": [
       1,
       2,
@@ -10,7 +10,7 @@
   },
   "max_abs_j1_residual": 0.0,
   "max_abs_posterior_residual": 2.220446049250313e-16,
-  "max_abs_probability_residual": 2.220446049250313e-16,
+  "max_abs_probability_residual": 3.3306690738754696e-16,
   "near_certainty_point_C": {
     "gain_percentile": 0.022583559168925023,
     "gain_q25_reference": 0.1063726154430289,

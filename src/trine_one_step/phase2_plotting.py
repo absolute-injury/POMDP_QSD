@@ -16,6 +16,7 @@ def create_phase2_routing_figure(
     out_png: Path,
     out_pdf: Path,
     probability_label_min: float = 0.10,
+    show_internal_metadata: bool = False,
 ) -> None:
     out_png.parent.mkdir(parents=True, exist_ok=True)
     out_pdf.parent.mkdir(parents=True, exist_ok=True)
@@ -42,9 +43,10 @@ def create_phase2_routing_figure(
             point=point,
             outcome_colors=outcome_colors,
             probability_label_min=probability_label_min,
+            show_internal_metadata=show_internal_metadata,
         )
 
-    _draw_legend_panel(ax=fig.add_subplot(gs[1, 2]), result=result, outcome_colors=outcome_colors)
+    _draw_legend_panel(ax=fig.add_subplot(gs[1, 2]), outcome_colors=outcome_colors)
     fig.suptitle(r"Posterior Routing Under $\alpha^*(b)$", fontsize=30, y=0.981, fontweight="bold")
     fig.subplots_adjust(left=0.03, right=0.992, bottom=0.04, top=0.90, wspace=0.16, hspace=0.24)
     fig.savefig(out_png, dpi=360, bbox_inches="tight")
@@ -86,6 +88,7 @@ def create_phase2_diagnostics_figure(
 def create_phase2_case_figures(
     result: dict[str, Any],
     out_dir: Path,
+    show_internal_metadata: bool = False,
 ) -> dict[str, dict[str, Path]]:
     out_dir.mkdir(parents=True, exist_ok=True)
     _set_paper_style()
@@ -98,7 +101,13 @@ def create_phase2_case_figures(
         point = points[label]
         png = out_dir / f"figure_D_case_{label}_routing_detail.png"
         pdf = out_dir / f"figure_D_case_{label}_routing_detail.pdf"
-        _draw_single_case_figure(point=point, outcome_colors=outcome_colors, out_png=png, out_pdf=pdf)
+        _draw_single_case_figure(
+            point=point,
+            outcome_colors=outcome_colors,
+            out_png=png,
+            out_pdf=pdf,
+            show_internal_metadata=show_internal_metadata,
+        )
         paths[label] = {"png": png, "pdf": pdf}
     return paths
 
@@ -108,6 +117,7 @@ def _draw_routing_panel(
     point: dict[str, Any],
     outcome_colors: dict[int, str],
     probability_label_min: float,
+    show_internal_metadata: bool,
 ) -> None:
     _decorate_simplex(ax)
 
@@ -217,7 +227,7 @@ def _draw_routing_panel(
         fontweight="bold",
     )
 
-    if point["source"] != "target":
+    if show_internal_metadata and point["source"] != "target":
         ax.text(
             0.98,
             0.99,
@@ -238,11 +248,10 @@ def _draw_routing_panel(
 
 def _draw_legend_panel(
     ax: plt.Axes,
-    result: dict[str, Any],
     outcome_colors: dict[int, str],
 ) -> None:
     ax.axis("off")
-    ax.set_title("Interpretation Guide", fontsize=17.0, pad=7.0, fontweight="bold")
+    ax.set_title("Legend", fontsize=17.0, pad=7.0, fontweight="bold")
 
     handles = [
         Line2D(
@@ -281,25 +290,13 @@ def _draw_legend_panel(
         title_fontsize=14.4,
     )
 
-    checks = result["global_checks"]
-    switch = checks["switching_point_E"]
-    lines = [
-        "Reading notes",
-        f"- A spread: {checks['center_point_A_symmetry']['probability_spread']:.3f}",
-        f"- C gain percentile: {checks['near_certainty_point_C']['gain_percentile']:.3f}",
-        f"- E gap: {switch['argmax_gap']:.2e}",
-        f"- E near-tie threshold: {switch['near_tie_threshold']:.2e}",
-        f"- E near-tie satisfied: {switch['near_tie_satisfied']}",
-        "",
-        "See diagnostics figure for",
-        "normalization and residual details.",
-    ]
     ax.text(
         0.04,
-        0.59,
-        "\n".join(lines),
+        0.42,
+        "Interpretation guidance is provided in the Phase II README.\n"
+        "Use the diagnostics figure for residual and near-tie checks.",
         transform=ax.transAxes,
-        fontsize=13.5,
+        fontsize=12.8,
         ha="left",
         va="top",
         color="#2B2F35",
@@ -424,6 +421,7 @@ def _draw_single_case_figure(
     outcome_colors: dict[int, str],
     out_png: Path,
     out_pdf: Path,
+    show_internal_metadata: bool,
 ) -> None:
     fig = plt.figure(figsize=(21.8, 12.6))
     # Prioritize simplex panel size in per-case detail figures.
@@ -571,13 +569,24 @@ def _draw_single_case_figure(
     bar_ax.grid(axis="y", alpha=0.25, linestyle=":")
     _style_box(bar_ax)
 
-    note_lines = [
-        f"source: {point['source']}",
-        f"tie flag: {point['tie_flag']}",
-        f"J1*: {point['j1_star']:.6f}",
-        f"J1 residual: {point['checks']['j1_residual']:.2e}",
-    ]
-    note_lines.append("routing arrows are visually stretched for readability")
+    note_lines = []
+    if show_internal_metadata:
+        note_lines.extend(
+            [
+                f"source: {point['source']}",
+                f"tie flag: {point['tie_flag']}",
+                f"J1*: {point['j1_star']:.6f}",
+                f"J1 residual: {point['checks']['j1_residual']:.2e}",
+            ]
+        )
+    else:
+        note_lines.extend(
+            [
+                f"J1*: {point['j1_star']:.6f}",
+                "Detailed interpretation is documented in the Phase II README.",
+            ]
+        )
+    note_lines.append("Routing arrows are visually stretched for readability.")
     ax_info.text(0.04, 0.07, "\n".join(note_lines), fontsize=14.8, ha="left", va="top")
 
     fig.subplots_adjust(left=0.042, right=0.995, bottom=0.062, top=0.91, wspace=0.06)

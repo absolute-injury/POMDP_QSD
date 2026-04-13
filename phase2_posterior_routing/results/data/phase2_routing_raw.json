@@ -10,7 +10,7 @@
   },
   "global_checks": {
     "center_point_A_symmetry": {
-      "branch_length_spread": 8.606637656743965e-05,
+      "branch_length_spread": 8.606637656749516e-05,
       "dominant_hypotheses": [
         1,
         2,
@@ -20,7 +20,7 @@
     },
     "max_abs_j1_residual": 0.0,
     "max_abs_posterior_residual": 2.220446049250313e-16,
-    "max_abs_probability_residual": 2.220446049250313e-16,
+    "max_abs_probability_residual": 3.3306690738754696e-16,
     "near_certainty_point_C": {
       "gain_percentile": 0.022583559168925023,
       "gain_q25_reference": 0.1063726154430289,
@@ -87,7 +87,7 @@
       "max_coordinate_prior": 0.3375,
       "outcomes": [
         {
-          "branch_length": 0.28858378170411847,
+          "branch_length": 0.2885837817041184,
           "displacement_xy": [
             -0.24992088607594942,
             -0.14429189085205932
@@ -243,8 +243,8 @@
           1.0000000000000002,
           1.0
         ],
-        "probability_sum": 0.9999999999999998,
-        "probability_sum_residual": -2.220446049250313e-16
+        "probability_sum": 0.9999999999999997,
+        "probability_sum_residual": -3.3306690738754696e-16
       },
       "entropy_prior": 0.8269889454905917,
       "gain": 0.2736907509934751,
@@ -288,7 +288,7 @@
             0.6539286440293138,
             0.0030256327903088694
           ],
-          "probability": 0.4638503271597417
+          "probability": 0.46385032715974167
         },
         {
           "branch_length": 0.3450036781219587,
@@ -492,7 +492,7 @@
             0.7394778312401578,
             0.44139952229716845
           ],
-          "probability": 0.05026967055180696
+          "probability": 0.050269670551806964
         },
         {
           "branch_length": 0.049880992127668944,
@@ -579,8 +579,8 @@
           1.0,
           1.0
         ],
-        "probability_sum": 1.0,
-        "probability_sum_residual": 0.0
+        "probability_sum": 0.9999999999999999,
+        "probability_sum_residual": -1.1102230246251565e-16
       },
       "entropy_prior": 0.9745701894462542,
       "gain": 0.16555235970097804,
@@ -696,7 +696,7 @@
             0.16409205641696195,
             0.24866153988851472
           ],
-          "probability": 0.3085060713190037
+          "probability": 0.30850607131900365
         }
       ],
       "role": "generic interior asymmetric",
@@ -864,7 +864,7 @@
             0.4630872483221478,
             0.53472709495415
           ],
-          "probability": 0.3104166666666666
+          "probability": 0.31041666666666656
         }
       ],
       "role": "off-center interior",

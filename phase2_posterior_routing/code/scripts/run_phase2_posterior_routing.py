@@ -58,6 +58,11 @@ def parse_args() -> argparse.Namespace:
         help="Posterior normalization tolerance",
     )
     parser.add_argument(
+        "--debug-figure-metadata",
+        action="store_true",
+        help="Render internal metadata overlays in Phase II figures",
+    )
+    parser.add_argument(
         "--outdir",
         type=Path,
         default=PHASE_ROOT / "results",
@@ -107,9 +112,18 @@ def main() -> None:
     _save_csv(summary_csv_path, make_summary_rows(result))
     _save_csv(branch_csv_path, make_branch_rows(result))
     notes_path.write_text(build_interpretation_note(result), encoding="utf-8")
-    create_phase2_routing_figure(result=result, out_png=figure_png, out_pdf=figure_pdf)
+    create_phase2_routing_figure(
+        result=result,
+        out_png=figure_png,
+        out_pdf=figure_pdf,
+        show_internal_metadata=args.debug_figure_metadata,
+    )
     create_phase2_diagnostics_figure(result=result, out_png=diag_png, out_pdf=diag_pdf)
-    case_paths = create_phase2_case_figures(result=result, out_dir=case_dir)
+    case_paths = create_phase2_case_figures(
+        result=result,
+        out_dir=case_dir,
+        show_internal_metadata=args.debug_figure_metadata,
+    )
 
     print(f"[run] completed {args.tag}")
     print(f"[phase1] {args.phase1_npz.resolve()}")
